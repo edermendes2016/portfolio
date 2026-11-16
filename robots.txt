@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edermendes2016.github.io/portfolio/sitemap.xml

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-pt="Criando um agente RAG local para explorar uma base de código gigante | Eder Mendes Amaral">Building a local RAG agent to explore a huge codebase | Eder Mendes Amaral</title>
+  <meta name="description" content="Why I kept everything on-premise, how the pipeline works, and what broke along the way.">
+  <meta name="author" content="Eder Mendes Amaral">
+  <link rel="canonical" href="https://edermendes2016.github.io/portfolio/blog/posts/local-rag-agent.html">
+  <meta name="theme-color" content="#1f6feb">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Building a local RAG agent to explore a huge codebase | Eder Mendes Amaral">
+  <meta property="og:description" content="Why I kept everything on-premise, how the pipeline works, and what broke along the way.">
+  <meta property="og:url" content="https://edermendes2016.github.io/portfolio/blog/posts/local-rag-agent.html">
+  <meta property="og:image" content="https://edermendes2016.github.io/portfolio/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://edermendes2016.github.io/portfolio/assets/img/og-image.png">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <meta property="article:published_time" content="2026-11-13">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Building a local RAG agent to explore a huge codebase","datePublished":"2026-11-13","author":{"@type":"Person","name":"Eder Mendes Amaral","url":"https://edermendes2016.github.io/portfolio/"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-pt="Pular para o conteúdo">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="../../">Eder Mendes Amaral</a>
+      <ul class="nav-links">
+        <li><a href="../../#about" data-pt="Sobre">About</a></li>
+        <li><a href="../../#projects" data-pt="Projetos">Projects</a></li>
+        <li><a href="../../#experience" data-pt="Experiência">Experience</a></li>
+        <li><a href="../../#skills" data-pt="Habilidades">Skills</a></li>
+        <li><a href="../../blog/" aria-current="page">Blog</a></li>
+      </ul>
+      <button class="icon-btn lang-toggle" type="button" lang="pt-BR" aria-label="Ver em português" title="Ver em português">PT</button>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </nav>
+  </header>
+  <main id="main" class="article">
+    <a class="back" href="../" data-pt="← Todos os posts">← All posts</a>
+    <article>
+      <h1 data-pt="Criando um agente RAG local para explorar uma base de código gigante">Building a local RAG agent to explore a huge codebase</h1>
+      <div class="post-meta" data-pt="&lt;time datetime=&quot;2026-11-13&quot;&gt;13 nov 2026&lt;/time&gt; · 5 min de leitura"><time datetime="2026-11-13">Nov 13, 2026</time> · 5 min read</div>
+
+      <p data-pt="Grandes projetos open source são ótimos professores, mas são difíceis de navegar. Quando quis entender como um grande framework Python organiza suas integrações com modelos de chat, passei mais tempo procurando pastas do que aprendendo. Então construí um pequeno agente para fazer essa busca por mim.">Big open-source projects are great teachers, but they are hard to navigate. When I wanted to understand how a large Python framework organises its chat model integrations, I spent more time searching folders than learning. So I built a small agent to do the searching for me.</p>
+
+      <h2 data-pt="O objetivo">The goal</h2>
+      <p data-pt="Fazer perguntas em linguagem natural, como &lt;em&gt;&quot;Onde está definida a classe base dos modelos de chat?&quot;&lt;/em&gt;, e receber uma resposta que cita os arquivos exatos de onde ela veio. E fazer isso sem enviar uma única linha de código para uma API externa.">Ask questions in plain English, like <em>"Where is the base class for chat models defined?"</em>, and get an answer that names the exact files it came from. And do it without sending a single line of code to an external API.</p>
+
+      <h2 data-pt="Por que local?">Why local?</h2>
+      <p data-pt="Nos setores em que trabalhei, muitas vezes os dados não podem sair da empresa. Se a IA vai ajudar ali, ela precisa rodar on-premise. Este projeto foi a minha forma de provar para mim mesmo que uma configuração útil cabe em uma máquina comum de desenvolvedor.">In the sectors I have worked in, data often cannot leave the building. If AI is going to help there, it has to run on-premise. This project was my way of proving to myself that a useful setup fits on a normal developer machine.</p>
+
+      <h2 data-pt="O pipeline">The pipeline</h2>
+      <ul>
+        <li data-pt="&lt;strong&gt;Carregar:&lt;/strong&gt; ler os arquivos de código do repositório."><strong>Load:</strong> read the repository's source files.</li>
+        <li data-pt="&lt;strong&gt;Dividir:&lt;/strong&gt; cortar em pedaços (chunks) que respeitam os limites de classes e funções."><strong>Split:</strong> cut them into chunks that respect class and function boundaries.</li>
+        <li data-pt="&lt;strong&gt;Vetorizar e guardar:&lt;/strong&gt; transformar cada pedaço em vetor e armazenar no ChromaDB."><strong>Embed and store:</strong> turn each chunk into a vector and keep it in ChromaDB.</li>
+        <li data-pt="&lt;strong&gt;Recuperar:&lt;/strong&gt; para cada pergunta, buscar os pedaços mais relevantes."><strong>Retrieve:</strong> for each question, fetch the most relevant chunks.</li>
+        <li data-pt="&lt;strong&gt;Responder:&lt;/strong&gt; um modelo local servido pelo Ollama escreve a resposta e lista as fontes."><strong>Answer:</strong> a local model served by Ollama writes the answer and lists its sources.</li>
+      </ul>
+      <p data-pt="Tudo roda em Docker, então a stack inteira sobe com um único comando.">Everything runs in Docker, so the whole stack starts with one command.</p>
+<pre><code>retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+answer = chain.invoke({"question": question})
+for doc in answer["sources"]:
+    print(doc.metadata["source"])</code></pre>
+
+      <h2 data-pt="O que quebrou">What broke</h2>
+      <p data-pt="A primeira versão respondia com confiança e às vezes estava errada. Pedaços pequenos demais perdiam o contexto da classe; pedaços grandes demais empurravam código útil para fora do prompt. Ajustar o tamanho e a sobreposição dos chunks fez mais diferença do que trocar de modelo.">The first version answered confidently and was sometimes wrong. Chunks that were too small lost the context of their class; chunks that were too big pushed useful code out of the prompt. Tuning chunk size and overlap mattered more than switching models.</p>
+
+      <blockquote data-pt="Lição: em RAG, a qualidade da busca decide a qualidade da resposta. Conserte a busca antes de culpar o modelo.">Lesson: in RAG, retrieval quality decides answer quality. Fix the search before blaming the model.</blockquote>
+
+      <h2 data-pt="Próximos passos">Next steps</h2>
+      <ul>
+        <li data-pt="Adicionar uma avaliação simples: um conjunto fixo de perguntas com respostas conhecidas.">Add simple evaluation: a fixed set of questions with known answers.</li>
+        <li data-pt="Testar busca híbrida (palavras-chave mais vetores) para nomes exatos de classes.">Try hybrid search (keywords plus vectors) for exact class names.</li>
+      </ul>
+      <p data-pt="O código está no &lt;a href=&quot;https://github.com/edermendes2016/portfolio-langchain-local-agent&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.">The code is on <a href="https://github.com/edermendes2016/portfolio-langchain-local-agent" target="_blank" rel="noopener">GitHub</a>.</p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <span>© <span id="year">2026</span> Eder Mendes Amaral</span>
+      <span><a href="https://www.linkedin.com/in/eder-mendes-amaral/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/edermendes2016" target="_blank" rel="noopener">GitHub</a></span>
+    </div>
+  </footer>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>
