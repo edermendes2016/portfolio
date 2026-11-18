@@ -169,3 +169,17 @@ main { min-width: 0; }
 
 /* Language toggle */
 .lang-toggle { width: auto; padding: 0 .7rem; font: 600 .82rem/1 var(--font); letter-spacing: .04em; }
+
+/* Repositories loaded from GitHub (assets/js/repos.js) */
+.subsection-title { font-size: 1.05rem; margin: 2rem 0 .35rem; }
+.repo-intro { color: var(--muted); font-size: .95rem; margin: 0 0 1rem; }
+.repo-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.repo { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.repo h3 { font-size: 1rem; margin: 0; overflow-wrap: anywhere; }
+.repo h3 a { color: var(--text); }
+.repo h3 a:hover { color: var(--accent); }
+.repo p { color: var(--muted); font-size: .92rem; margin: 0; flex: 1; overflow-wrap: anywhere; }
+.repo .repo-empty { font-style: italic; }
+.repo-meta { display: flex; flex-wrap: wrap; gap: .4rem .75rem; align-items: center; color: var(--muted); font-size: .8rem; font-family: var(--mono); }
+.repo-lang { background: var(--tag-bg); padding: .1rem .5rem; border-radius: 6px; font-family: inherit; }
+.repo-status { color: var(--muted); font-size: .95rem; }
