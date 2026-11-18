@@ -1,7 +1,9 @@
 // Eder's agent: runs entirely in the browser, with no API and no cost.
 //
 // - Chat in the About section: answers questions such as "Does Eder know C#?" from
-//   assets/data/kb.json, which tools/build_kb.py builds from kb/profile.json (the résumé).
+//   assets/data/kb.json, built by .agentPessoalEder/build_kb.py from the résumé (that folder
+//   stays on Eder's computer, out of git). The agent speaks as Monkey D. Luffy, Eder's agent,
+//   handles small talk, and answers in the language of the question (PT or EN).
 //   Skill questions are answered from the jobs and projects linked to that skill; other
 //   questions are matched to the closest résumé passage with TF-IDF. When nothing matches,
 //   it says it doesn't know instead of guessing.
@@ -16,7 +18,8 @@
   var INTRO_KEY = "agent-intro-v1";
   var MIN_SCORE = 0.14; // below this TF-IDF score the agent says it doesn't know
 
-  function lang() { return root.lang === "pt-BR" ? "pt" : "en"; }
+  var answerLang = null; // set while answering, so the reply follows the question's language
+  function lang() { return answerLang || (root.lang === "pt-BR" ? "pt" : "en"); }
   function pick(obj) { return obj ? (obj[lang()] || obj.en || "") : ""; }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -42,9 +45,12 @@
       placeholder: "e.g. Does Eder know C#?",
       loading: "Loading Eder's résumé…",
       loadError: "Couldn't load the résumé data. Please reload the page.",
-      dontKnow: "I don't know that from Eder's résumé. It's better to ask him directly on LinkedIn.",
-      notListed: "{x} isn't on Eder's résumé, so I can't say he knows it. He may have had contact with it; it's best to ask him directly.",
+      dontKnow: ["I don't know that from Eder's résumé. It's better to ask him directly on LinkedIn.",
+        "That one isn't in Eder's résumé, so I'd rather not guess. He'll gladly answer on LinkedIn.",
+        "I only know what's in Eder's résumé, and that isn't there. Ask him on LinkedIn!"],
+      notListed: ["{x} isn't on Eder's résumé yet.", "I didn't find {x} in Eder's résumé.", "{x} isn't listed among Eder's skills for now."],
       tryAsking: "You can ask, for example:",
+      askHim: "To be sure, ask him on LinkedIn: https://www.linkedin.com/in/eder-mendes-amaral/",
       yes: "Yes.",
       usedAt: "He has used {s} professionally for {d}, at {c}.",
       usedAtShort: "He has used {s} professionally at {c} ({d}).",
@@ -77,9 +83,12 @@
       placeholder: "ex.: O Eder sabe C#?",
       loading: "Carregando o currículo do Eder…",
       loadError: "Não foi possível carregar os dados do currículo. Recarregue a página.",
-      dontKnow: "Não sei responder isso com base no currículo do Eder. O melhor é perguntar direto para ele no LinkedIn.",
-      notListed: "{x} não está no currículo do Eder, então não posso dizer que ele sabe. Ele pode ter tido contato, mas o melhor é perguntar direto para ele.",
+      dontKnow: ["Não sei responder isso com base no currículo do Eder. O melhor é perguntar direto para ele no LinkedIn.",
+        "Essa não está no currículo do Eder, então prefiro não chutar. Ele responde com prazer no LinkedIn.",
+        "Eu só sei o que está no currículo do Eder, e isso não está lá. Pergunte para ele no LinkedIn!"],
+      notListed: ["{x} ainda não está no currículo do Eder.", "Não encontrei {x} no currículo do Eder.", "{x} não aparece entre as habilidades do Eder por enquanto."],
       tryAsking: "Você pode perguntar, por exemplo:",
+      askHim: "Para ter certeza, pergunte para ele no LinkedIn: https://www.linkedin.com/in/eder-mendes-amaral/",
       yes: "Sim.",
       usedAt: "Ele usa {s} profissionalmente há {d}, na {c}.",
       usedAtShort: "Ele usou {s} profissionalmente na {c} ({d}).",
@@ -110,6 +119,32 @@
     }
   };
   function t(key) { return T[lang()][key]; }
+  // Picks the next variant of a list without repeating until all were used.
+  var queues = {};
+  function rotate(key, list) {
+    if (!list || !list.length) return "";
+    var q = queues[key];
+    if (!q || !q.length) {
+      q = list.map(function (_, i) { return i; });
+      for (var i = q.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var tmp = q[i]; q[i] = q[j]; q[j] = tmp; }
+      if (queues["last:" + key] === q[0] && q.length > 1) q.push(q.shift());
+      queues[key] = q;
+    }
+    var idx = q.shift();
+    queues["last:" + key] = idx;
+    return list[idx];
+  }
+  function variant(key) { return rotate(lang() + ":" + key, T[lang()][key]); }
+
+  // Language of the question: Portuguese or English words, else the page language.
+  var PT_WORDS = /\b(o|a|ele|ela|voce|vc|sabe|conhece|qual|quais|quem|como|onde|seu|sua|nome|oi+e?|ola|tchau|obrigad\w*|valeu|tudo|bem|nao|sim|de|do|da|em|com|para|pra|trabalh\w*|tem|e|ja|mora|fala|ingles|projetos?|experiencia)\b/g;
+  var EN_WORDS = /\b(he|his|him|does|do|know|knows|what|who|where|how|your|name|hi|hello|hey|bye|thanks|thank|you|is|are|the|of|in|with|has|have|worked|live|speak|english|projects?|experience)\b/g;
+  function detectLang(text) {
+    var n = String(text).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    var pt = (n.match(PT_WORDS) || []).length, en = (n.match(EN_WORDS) || []).length;
+    return pt > en ? "pt" : en > pt ? "en" : null;
+  }
+
   function fill(str, map) { return str.replace(/\{(\w)\}/g, function (_, k) { return map[k]; }); }
 
   // ---------- Knowledge base ----------
@@ -132,7 +167,7 @@
     return kb;
   }
 
-  // Same rules as tools/build_kb.py, so questions and passages are cut into the same words.
+  // Same rules as build_kb.py, so questions and passages are cut into the same words.
   function normalize(kb, text) {
     text = String(text).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
     kb.tokenizer.replacements.forEach(function (r) { text = text.split(r[0]).join(r[1]); });
@@ -332,9 +367,29 @@
   var ASKS_ABOUT = /\b(sabe|conhece|domina|manja|programa em|experiencia (com|em)|trabalh\w* com|usa|usou|mexe com|know|knows|experience (with|in)|worked with|work with|uses?|used|familiar with|skilled in)\s+(.+)$/;
   var FILLER = /^((o|a)\s+)?(eder|ele|ela|he|him)?\s*(sabe|conhece|tem)?\s*(de|em|com|o|a|the)?\s+/;
 
+  // Small talk: who the agent is, greetings, thanks and goodbyes, in PT and EN.
+  var SMALL = [
+    ["identity", /\b(seu nome|teu nome|como (voce|vc|tu) (se )?chama|quem (e|eh) (voce|vc|tu)|quem e o agente|voce e quem|what'?s your name|what is your name|your name|who are you|who r u|are you a (bot|robot|ai))\b/],
+    ["how_are_you", /^(e ai,? )?(tudo bem|td bem|tudo bom|como vai|como voce esta|como vc ta|beleza|blz|suave|how are you|how'?s it going|how are u|what'?s up|sup)( com voce| contigo)?$/],
+    ["thanks", /^(muito )?(obrigad[oa]|obg|brigad[oa]|valeu|vlw|thanks|thank you|thank u|thx|ty)( (luffy|agente|mesmo|demais|a lot|so much))*$/],
+    ["farewells", /^(tchau|tchauzinho|xau|adeus|ate (mais|logo|breve|a proxima)|falou|flw|bye( bye)?|bye-bye|goodbye|good bye|see (you|ya)( later)?|cya|later)( (luffy|agente|pessoal|everyone))*$/],
+    ["greetings", /^(oi+e?|ola+|hey+|hi+|hello+|e ?ai|eae|salve|bom dia|boa tarde|boa noite|good (morning|afternoon|evening)|hola|yo)( (luffy|agente|tudo bem|td bem|there|everyone|pessoal))*$/]
+  ];
+  function smallTalk(kb, norm) {
+    var text = norm.replace(/[!?.,;:]+/g, " ").replace(/\s+/g, " ").trim();
+    var persona = kb.persona || {};
+    for (var i = 0; i < SMALL.length; i++) {
+      if (SMALL[i][1].test(text) && persona[SMALL[i][0]]) return pick(rotate(SMALL[i][0], persona[SMALL[i][0]]));
+    }
+    return null;
+  }
+
   function answer(kb, question, repos) {
     var norm = normalize(kb, question).replace(/[?!.]+\s*$/, "").trim();
     var toks = tokens(kb, question);
+
+    var talk = smallTalk(kb, norm);
+    if (talk) return { nodes: [el("p", null, talk)] };
 
     if (/^(sim|s|yes|y|ok|bora|vamos)$|\b(tour|guia|guie|guiad\w*|navegacao direcionada|guide me|show me around)\b/.test(norm)) {
       return { tour: true, nodes: [el("p", null, t("tourStart"))] };
@@ -371,8 +426,13 @@
       var thing = m[m.length - 1].replace(FILLER, "").replace(/^(de|em|com|o|a|the)\s+/, "").trim();
       var original = question.replace(/[?!.]+\s*$/, "").trim();
       var tail = original.slice(Math.max(0, original.length - thing.length)).trim();
-      if (thing && thing.split(/\s+/).length <= 4) var x = tail || thing;
-        return { nodes: [el("p", null, fill(t("notListed"), { x: x.charAt(0).toUpperCase() + x.slice(1) }))] };
+      if (thing && thing.split(/\s+/).length <= 4) {
+        var x = tail || thing;
+        return { nodes: [
+          el("p", null, fill(variant("notListed"), { x: x.charAt(0).toUpperCase() + x.slice(1) }) + " " + pick(rotate("learning", kb.learning))),
+          el("p", "agent-sub", t("askHim"))
+        ] };
+      }
     }
 
     if (top && top.score >= MIN_SCORE) {
@@ -383,9 +443,11 @@
       return { nodes: out };
     }
 
-    var fallback = [el("p", null, t("dontKnow")), el("p", "agent-sub", t("tryAsking"))];
+    var fallback = [el("p", null, variant("dontKnow")), el("p", "agent-sub", t("tryAsking"))];
     var ul = el("ul", "agent-links");
-    kb.suggestions[lang()].slice(0, 3).forEach(function (s) { ul.appendChild(el("li", null, s)); });
+    var sug = kb.suggestions[lang()];
+    var start = Math.floor(Math.random() * sug.length);
+    for (var k = 0; k < 3; k++) ul.appendChild(el("li", null, sug[(start + k * 7) % sug.length]));
     fallback.push(ul);
     return { nodes: fallback };
   }
@@ -417,7 +479,9 @@
       bubble("user", question);
       var pending = bubble("bot typing", t("loading"));
       Promise.all([loadKb(), loadRepos()]).then(function (res) {
-        var a = answer(res[0], question, res[1]);
+        answerLang = detectLang(question);
+        var a;
+        try { a = answer(res[0], question, res[1]); } finally { answerLang = null; }
         pending.className = "ask-msg bot";
         pending.textContent = "";
         a.nodes.forEach(function (n) { pending.appendChild(n); });

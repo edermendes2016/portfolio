@@ -22,8 +22,7 @@ Then open http://localhost:8000.
 - `assets/js/main.js`: theme toggle, language toggle (EN / PT-BR) and mobile menu
 - `assets/js/repos.js`: the "More on GitHub" list on the home page
 - `assets/js/agent.js`: Eder's agent (chat with autocomplete, clickable skills, welcome tour)
-- `kb/profile.json`: the résumé the agent answers from
-- `tools/build_kb.py`: builds `assets/data/kb.json` and the Skills section from `kb/profile.json`
+- `assets/data/kb.json`: what the agent knows, built from the résumé (see below)
 - `assets/img/`: images, favicon and the social sharing image (`og-image.png`)
 
 ## Add a blog post
@@ -48,15 +47,20 @@ The site has a small agent that runs entirely in the browser, with no paid AI, A
 
 - **Chat** in the About section. Recruiters ask things like "Does Eder know C#?" and get an answer built from the résumé: where he used the skill, for how long, an example from a job, and the projects behind it. Other questions are matched to the closest résumé passage with TF-IDF (a small retrieval step, like the "R" in RAG). When nothing matches, it says it doesn't know instead of guessing. The input suggests questions as you type.
 - **Clickable skills.** Each tag in the Skills section opens what he did with it, the projects that use it (with the last GitHub update), and other public repositories in that language.
+- **Persona.** The agent introduces itself as Monkey D. Luffy, King of the Pirates and Eder's agent, answers greetings, thanks and goodbyes, and replies in the language of the question (PT or EN). When a technology isn't on the résumé, it says so and adds a short, true story of how fast Eder learns, without repeating itself.
 - **Welcome agent.** On the first visit a bubble offers a guided tour of his story. After that, the round button in the corner reopens it.
 
 ### Update what the agent knows
 
-1. Edit `kb/profile.json`: facts, jobs, projects, certifications and skills. Each job and project lists the skill ids it proves.
-2. Run `python tools/build_kb.py` (Python 3, no packages needed). It rewrites `assets/data/kb.json` and the Skills section of `index.html`, and warns about any skill that no job, project or certification backs up.
-3. Commit both files.
+The source of the agent lives in `.agentPessoalEder/` (the résumé as `profile.json`, the agent's persona and lines, and `build_kb.py`). That folder is in `.gitignore`, so it stays on your computer and never goes to GitHub. Keep a backup of it.
 
-Repositories are read live from GitHub, so a new push shows up without rebuilding. To link a new repository to a skill, give it that skill's id as a GitHub topic (for example `angular`), or add it as a project in `kb/profile.json`.
+1. Edit `.agentPessoalEder/profile.json`: facts, jobs, projects, certifications, skills, persona and learning stories. Each job and project lists the skill ids it proves.
+2. Run `python .agentPessoalEder/build_kb.py` (Python 3, no packages needed). It rewrites `assets/data/kb.json` and the Skills section of `index.html`, and warns about any skill that no job, project or certification backs up.
+3. Commit `assets/data/kb.json` and `index.html`.
+
+Note: the browser has to download `assets/data/kb.json` and `assets/js/agent.js` to run the agent, so anyone can still read those two files. Only the source folder is private.
+
+Repositories are read live from GitHub, so a new push shows up without rebuilding. To link a new repository to a skill, give it that skill's id as a GitHub topic (for example `angular`), or add it as a project in `.agentPessoalEder/profile.json`.
 
 ## Translations
 
