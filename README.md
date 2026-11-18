@@ -20,6 +20,7 @@ Then open http://localhost:8000.
 - `blog/`: blog index and posts (`blog/posts/*.html`)
 - `assets/css/style.css`: styles, light and dark theme
 - `assets/js/main.js`: theme toggle, language toggle (EN / PT-BR) and mobile menu
+- `assets/js/repos.js`: the "More on GitHub" list on the home page
 - `assets/img/`: images, favicon and the social sharing image (`og-image.png`)
 
 ## Add a blog post
@@ -28,6 +29,15 @@ Then open http://localhost:8000.
 2. Add the Portuguese text in `data-pt` attributes, as in the existing posts.
 3. Add a card for it in `blog/index.html` (and on the home page, if you want).
 4. Add its URL to `sitemap.xml`.
+
+## Repositories list
+
+The "More on GitHub" list under the featured project is loaded from the GitHub API when the page opens, so a new public repository shows up on its own, with no change to this site. It shows the 6 public repositories updated most recently, leaving out forks, archived repositories, this site and the featured project.
+
+- The card text comes from the repository's **About** on GitHub: the description, and the website, which becomes a "Live site" button. Fill these in on GitHub to improve a card.
+- To hide a repository, add the topic `no-portfolio` to it on GitHub, or add its name to `EXCLUDE` in `assets/js/repos.js`.
+- To show more or fewer, change `LIMIT` in the same file.
+- Private repositories never appear.
 
 ## Translations
 
