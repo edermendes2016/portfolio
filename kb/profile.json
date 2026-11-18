@@ -1,0 +1,299 @@
+{
+  "_comment": "Source of truth for Eder's agent (chat, clickable skills, guided tour). Edit this file, then run: python tools/build_kb.py",
+  "person": {
+    "name": "Eder da Silva Mendes Amaral",
+    "headline": {
+      "pt": "Desenvolvedor Full-Stack .NET, C#, ASP.NET Core, Angular e SQL Server, com AWS e Azure",
+      "en": "Full-Stack .NET developer: C#, ASP.NET Core, Angular and SQL Server, with AWS and Azure"
+    },
+    "linkedin": "https://www.linkedin.com/in/eder-mendes-amaral/",
+    "github": "https://github.com/edermendes2016"
+  },
+
+  "facts": [
+    {
+      "id": "summary",
+      "keywords": "quem e eder resumo perfil sobre who is summary profile about apresente fale contratar por que diferencial destaque hire why strengths",
+      "pt": "Eder é Engenheiro de Computação e Desenvolvedor Full-Stack especializado em C#, .NET 8, ASP.NET Core, Angular e SQL Server. Trabalha desde 2016 com sistemas críticos do setor público e do setor elétrico regulado, e hoje também constrói projetos de IA Generativa com RAG e LLMs locais e de infraestrutura como código com Terraform em AWS e Azure.",
+      "en": "Eder is a Computer Engineer and Full-Stack Developer specialised in C#, .NET 8, ASP.NET Core, Angular and SQL Server. Since 2016 he has worked on critical systems for the public sector and the regulated electricity sector, and he now also builds generative AI projects with RAG and local LLMs, and infrastructure as code with Terraform on AWS and Azure."
+    },
+    {
+      "id": "goal",
+      "keywords": "busca procura vaga objetivo cargo quer looking for goal role position job objetivo profissional",
+      "pt": "Ele busca uma vaga de Desenvolvedor Full-Stack para construir aplicações escaláveis, seguras e de alta performance.",
+      "en": "He is looking for a Full-Stack Developer role, building scalable, secure and high-performance applications."
+    },
+    {
+      "id": "location",
+      "keywords": "onde mora cidade localizacao remoto presencial hibrido mudar where live city location remote onsite hybrid relocate",
+      "pt": "Eder mora em Campo Grande, MS, e está aberto a trabalho remoto.",
+      "en": "Eder lives in Campo Grande, MS (Brazil) and is open to remote work."
+    },
+    {
+      "id": "english",
+      "keywords": "ingles idioma idiomas fala lingua english language languages speak",
+      "pt": "Inglês avançado. Português é a língua nativa.",
+      "en": "Advanced English. Portuguese is his native language."
+    },
+    {
+      "id": "contact",
+      "keywords": "contato falar conversar entrevista email telefone linkedin contact reach interview phone email talk",
+      "pt": "O melhor caminho é o LinkedIn: https://www.linkedin.com/in/eder-mendes-amaral/ . O GitHub dele é https://github.com/edermendes2016 .",
+      "en": "The best way is LinkedIn: https://www.linkedin.com/in/eder-mendes-amaral/ . His GitHub is https://github.com/edermendes2016 ."
+    },
+    {
+      "id": "sectors",
+      "keywords": "setor setores dominio area governo publico eletrico aneel cliente clientes sector sectors domain government public utilities electricity",
+      "pt": "A maior parte da experiência é no setor público (ANEEL, órgãos do Governo de MS, Assembleia Legislativa de MS, SANESUL) e no setor elétrico regulado.",
+      "en": "Most of his experience is in the public sector (ANEEL, Mato Grosso do Sul state agencies, the MS Legislative Assembly, SANESUL) and the regulated electricity sector."
+    },
+    {
+      "id": "seniority",
+      "keywords": "senioridade nivel senior pleno junior anos experiencia quanto tempo seniority level years experience how long",
+      "pt": "Ele tem cerca de dez anos como desenvolvedor (desde 2016), sendo o cargo mais recente Desenvolvedor Full-Stack Pleno na G&P Projetos e Sistemas (2022 a 2026).",
+      "en": "He has about ten years as a developer (since 2016); his most recent role was Mid-level Full-Stack Developer at G&P Projetos e Sistemas (2022 to 2026)."
+    }
+  ],
+
+  "experiences": [
+    {
+      "id": "gp",
+      "company": "G&P Projetos e Sistemas",
+      "role": { "pt": "Desenvolvedor Full-Stack Pleno", "en": "Full-Stack Developer (Mid-level)" },
+      "start": "2022-06",
+      "end": "2026-09",
+      "highlights": [
+        { "pt": "Desenvolveu e modernizou sistemas críticos da ANEEL com ASP.NET Core (.NET 8 / C# 12), Angular (v8 a v20), SQL Server e Entity Framework Core em Clean Architecture.",
+          "en": "Built and modernised critical ANEEL systems with ASP.NET Core (.NET 8 / C# 12), Angular (v8 to v20), SQL Server and Entity Framework Core in Clean Architecture." },
+        { "pt": "Projetou e implementou soluções de IA Generativa com arquitetura RAG e LLMs executados localmente (on-premise), mantendo dados sensíveis dentro da agência.",
+          "en": "Designed and built generative AI solutions with a RAG architecture and LLMs running on-premise, keeping sensitive data inside the agency." },
+        { "pt": "Implementou CQRS, Event Sourcing para auditoria e os padrões Outbox e Saga para transações distribuídas idempotentes entre microsserviços.",
+          "en": "Implemented CQRS, Event Sourcing for auditing, and the Outbox and Saga patterns for idempotent distributed transactions between microservices." },
+        { "pt": "Desenvolveu APIs REST documentadas com Swagger/OpenAPI e integrou sistemas governamentais com autenticação JWT Bearer (S3A) e gestão eletrônica de documentos (SEI).",
+          "en": "Built REST APIs documented with Swagger/OpenAPI and integrated government systems with JWT Bearer authentication (S3A) and electronic document management (SEI)." },
+        { "pt": "Gerenciou deploy contínuo e promoção de código entre Dev, TST e Prod com pipelines de CI/CD no Azure DevOps e Microsoft Azure.",
+          "en": "Ran continuous deployment and code promotion across Dev, TST and Prod with CI/CD pipelines on Azure DevOps and Microsoft Azure." },
+        { "pt": "Construiu suítes de testes unitários com xUnit e FluentAssertions e configurou logs estruturados (Serilog) e Application Insights para monitoramento em produção.",
+          "en": "Built unit test suites with xUnit and FluentAssertions, and set up structured logging (Serilog) and Application Insights for production monitoring." },
+        { "pt": "Refatorou componentes Angular legados integrando o Design System GOV.BR, com padronização visual e diretrizes de acessibilidade.",
+          "en": "Refactored legacy Angular components onto the GOV.BR Design System, with visual consistency and accessibility guidelines." }
+      ],
+      "skills": ["csharp", "dotnet", "aspnetcore", "rest", "efcore", "sqlserver", "angular", "typescript", "html-css", "govbr", "clean-architecture", "cqrs", "event-sourcing", "outbox", "saga", "microservices", "swagger", "jwt", "azure-devops", "azure", "cicd", "xunit", "serilog", "app-insights", "rag", "git"]
+    },
+    {
+      "id": "inovvati",
+      "company": "INOVVATI Tecnologia",
+      "role": { "pt": "Analista de Sistemas", "en": "Systems Analyst" },
+      "start": "2019-01",
+      "end": "2022-05",
+      "highlights": [
+        { "pt": "Migrou aplicações legadas de órgãos estaduais (COGESP-MS) de ASP.NET para ASP.NET Core com zero downtime, incluindo Folha de Pagamento e Portal da Transparência.",
+          "en": "Migrated legacy applications of state agencies (COGESP-MS) from ASP.NET to ASP.NET Core with zero downtime, including Payroll and the Transparency Portal." },
+        { "pt": "Projetou microsserviços e APIs REST com padrões de resiliência (Retry e Circuit Breaker).",
+          "en": "Designed microservices and REST APIs with resilience patterns (Retry and Circuit Breaker)." },
+        { "pt": "Validou regras de negócio complexas com testes unitários em xUnit.",
+          "en": "Validated complex business rules with xUnit unit tests." },
+        { "pt": "Atuou no ciclo completo de desenvolvimento com Scrum: planejamento, refinamento técnico e retrospectivas.",
+          "en": "Worked across the full development cycle with Scrum: planning, technical refinement and retrospectives." }
+      ],
+      "skills": ["csharp", "dotnet", "aspnetcore", "rest", "microservices", "resilience", "xunit", "scrum", "git"]
+    },
+    {
+      "id": "easynet",
+      "company": "Easy Net Tecnologia da Informação",
+      "role": { "pt": "Analista de Sistemas", "en": "Systems Analyst" },
+      "start": "2016-02",
+      "end": "2019-01",
+      "highlights": [
+        { "pt": "Conduziu a migração de sistemas WebForms para ASP.NET Core, SQL Server e EF Core na Assembleia Legislativa de MS (ALMS), sem interrupção operacional.",
+          "en": "Led the migration of WebForms systems to ASP.NET Core, SQL Server and EF Core at the MS Legislative Assembly (ALMS), with no downtime." },
+        { "pt": "Desenvolveu módulos de um SaaS de ponto eletrônico e departamento pessoal, traduzindo regras trabalhistas em funcionalidades.",
+          "en": "Built modules of a SaaS for time tracking and HR, turning labour rules into features." },
+        { "pt": "Alocado na SANESUL, sustentou e evoluiu sistemas internos, diagnosticando gargalos de performance em banco de dados e aplicações.",
+          "en": "Placed at SANESUL, maintained and evolved internal systems, diagnosing performance bottlenecks in databases and applications." }
+      ],
+      "skills": ["csharp", "dotnet", "aspnetcore", "efcore", "sqlserver"]
+    },
+    {
+      "id": "precisa",
+      "company": "Precisa Informática",
+      "role": { "pt": "Analista de Suporte Técnico", "en": "Technical Support Analyst" },
+      "start": "2015-02",
+      "end": "2015-09",
+      "highlights": [
+        { "pt": "Implantou sistemas de gestão (ERP) e PDV em vários clientes, fez troubleshooting de aplicações e bancos de dados e treinou usuários.",
+          "en": "Rolled out ERP and point-of-sale systems for several clients, troubleshot applications and databases, and trained users." }
+      ],
+      "skills": []
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "rag-agent",
+      "name": { "pt": "Agente RAG Local para Repositórios de Código", "en": "Local RAG Agent for code repositories" },
+      "repo": "langchain-local-agent",
+      "year": 2026,
+      "highlights": [
+        { "pt": "Agente que indexa repositórios grandes (ex.: núcleo do LangChain) e responde perguntas de arquitetura citando arquivo e linha, 100% local, sem chaves de API.",
+          "en": "An agent that indexes large repositories (e.g. LangChain core) and answers architecture questions citing file and line, 100% local, with no API keys." },
+        { "pt": "Pipeline RAG com LangChain, embeddings e LLM servidos pelo Ollama, índice vetorial no ChromaDB e reranking com cross-encoder.",
+          "en": "RAG pipeline with LangChain, embeddings and LLM served by Ollama, a ChromaDB vector index and cross-encoder reranking." },
+        { "pt": "Avaliação com 30 perguntas de referência: o reranking elevou o hit@5 de 0,72 para 0,89 e o MRR de 0,50 para 0,71.",
+          "en": "Evaluated on 30 reference questions: reranking raised hit@5 from 0.72 to 0.89 and MRR from 0.50 to 0.71." },
+        { "pt": "Ambiente com Docker Compose (GPU opcional), interface em Streamlit e um dojo de respostas erradas para treinar a detecção de alucinações.",
+          "en": "Docker Compose setup (optional GPU), a Streamlit UI and a dojo of wrong answers to practise spotting hallucinations." }
+      ],
+      "skills": ["rag", "langchain", "ollama", "chromadb", "python", "docker", "llm-eval", "git"]
+    },
+    {
+      "id": "multicloud",
+      "name": { "pt": "Multicloud IaC Lab (AWS e Azure)", "en": "Multicloud IaC Lab (AWS and Azure)" },
+      "repo": "Cloud-AWS-Azure",
+      "year": 2026,
+      "highlights": [
+        { "pt": "Módulos Terraform para AWS: VPC em três camadas, RDS PostgreSQL privado, alarmes e dashboard do CloudWatch, remote state em S3 com lock no DynamoDB.",
+          "en": "Terraform modules for AWS: three-tier VPC, private RDS PostgreSQL, CloudWatch alarms and dashboard, remote state in S3 with DynamoDB locking." },
+        { "pt": "Pipeline no GitHub Actions com gates de segurança e qualidade: fmt, validate, tflint, gitleaks, Checkov, orçamento de custo (Infracost) e aprovação manual antes do apply.",
+          "en": "GitHub Actions pipeline with security and quality gates: fmt, validate, tflint, gitleaks, Checkov, cost budget (Infracost) and manual approval before apply." },
+        { "pt": "Laboratório com sete cenários de falha (drift, security group aberto, lock preso, vazamento de segredo e outros) testados de ponta a ponta.",
+          "en": "A lab with seven failure scenarios (drift, open security group, stuck lock, leaked secret and more) tested end to end." },
+        { "pt": "Roda localmente em emulador AWS (moto) via Docker, sem custo de nuvem; inclui módulos Azure equivalentes, manifests Kubernetes e runbook de migração.",
+          "en": "Runs locally on an AWS emulator (moto) in Docker at no cloud cost; includes equivalent Azure modules, Kubernetes manifests and a migration runbook." }
+      ],
+      "skills": ["terraform", "aws", "azure", "github-actions", "cicd", "postgresql", "docker", "kubernetes", "linux", "git"]
+    },
+    {
+      "id": "feira",
+      "name": { "pt": "Feira de Ciências com IA (SaaS Educacional)", "en": "AI Science Fair (education SaaS)" },
+      "repo": "SaaS-FeiraCienciaComIA",
+      "year": 2026,
+      "highlights": [
+        { "pt": "Plataforma SaaS para ideação e acompanhamento de projetos científicos escolares, integrada ao curso de Química da UFMS.",
+          "en": "SaaS platform to plan and follow school science projects, connected to the UFMS Chemistry course." },
+        { "pt": "Integração com a API do Google Gemini para gerar propostas completas (hipótese, metodologia, materiais e tarefas) e classificar intenções em linguagem natural.",
+          "en": "Google Gemini API integration to generate full proposals (hypothesis, method, materials, tasks) and classify intents in natural language." },
+        { "pt": "Firebase Authentication, regras granulares no Cloud Firestore, papéis de aluno e orientador e deploy no Firebase Hosting.",
+          "en": "Firebase Authentication, fine-grained Cloud Firestore rules, student and advisor roles, and deploy on Firebase Hosting." },
+        { "pt": "Interface colaborativa em tempo real com Angular 21 (Standalone Components, Signals), Tailwind CSS 4 e testes com Vitest.",
+          "en": "Real-time collaborative UI with Angular 21 (Standalone Components, Signals), Tailwind CSS 4 and Vitest tests." }
+      ],
+      "skills": ["angular", "typescript", "signals", "tailwind", "html-css", "firebase", "gemini", "git"]
+    },
+    {
+      "id": "finetune",
+      "name": { "pt": "Fine-tuning de LLM para Three.js e Shaders", "en": "LLM fine-tuning for Three.js and shaders" },
+      "repo": "3js-shader-finetuning",
+      "year": 2026,
+      "highlights": [
+        { "pt": "Prova de conceito de fine-tuning supervisionado (SFT) do Qwen3.5-9B-Base para gerar código Three.js, JavaScript e GLSL.",
+          "en": "Proof of concept of supervised fine-tuning (SFT) of Qwen3.5-9B-Base to generate Three.js, JavaScript and GLSL code." },
+        { "pt": "Treinamento com LLaMA Factory e LoRA/PEFT (rank 8, BF16), ajustando o modelo por adapter sem duplicar os pesos.",
+          "en": "Training with LLaMA Factory and LoRA/PEFT (rank 8, BF16), tuning the model with an adapter instead of copying the full weights." },
+        { "pt": "Dataset de instrução e resposta em JSON cobrindo ShaderMaterial, iluminação, animação, InstancedMesh, GLTF e pós-processamento; modelos rodando localmente no LM Studio.",
+          "en": "Instruction dataset in JSON covering ShaderMaterial, lighting, animation, InstancedMesh, GLTF and post-processing; models run locally in LM Studio." }
+      ],
+      "skills": ["fine-tuning", "python", "javascript", "git"]
+    }
+  ],
+
+  "education": [
+    { "id": "eng", "keywords": "faculdade graduacao formacao engenharia computacao diploma degree education university college",
+      "pt": "Bacharelado em Engenharia de Computação pela Universidade Anhanguera-Uniderp (Campo Grande, MS), 2012 a 2018.",
+      "en": "B.Eng. in Computer Engineering, Universidade Anhanguera-Uniderp (Campo Grande, MS), 2012 to 2018." },
+    { "id": "quimica", "keywords": "quimica licenciatura ufms cursando chemistry studying",
+      "pt": "Licenciatura em Química na UFMS, em andamento (previsão 2027).",
+      "en": "Teaching degree in Chemistry at UFMS, in progress (expected 2027)." }
+  ],
+
+  "certifications": [
+    { "id": "awsrestart", "skills": ["aws", "linux"], "keywords": "aws restart re/start escola da nuvem curso nuvem cloud course",
+      "pt": "AWS re/Start: Fundamentos de Computação em Nuvem (Escola da Nuvem, presencial, 300 h), em andamento em 2026. Cobre EC2, S3, VPC, IAM, AWS CLI, segurança, bancos de dados em nuvem, Linux e redes.",
+      "en": "AWS re/Start: Cloud Computing Fundamentals (Escola da Nuvem, in person, 300 h), in progress in 2026. Covers EC2, S3, VPC, IAM, AWS CLI, security, cloud databases, Linux and networking." },
+    { "id": "az900", "skills": ["azure"], "keywords": "certificacao certificado azure fundamentals az-900 az900 microsoft certification",
+      "pt": "Microsoft Certified: Azure Fundamentals (AZ-900).",
+      "en": "Microsoft Certified: Azure Fundamentals (AZ-900)." },
+    { "id": "cloudquest", "skills": ["aws", "rag"], "keywords": "aws cloud quest generative ai practitioner certificacao ia certification",
+      "pt": "AWS Cloud Quest: Generative AI Practitioner.",
+      "en": "AWS Cloud Quest: Generative AI Practitioner." },
+    { "id": "lfs162", "skills": ["linux", "cicd"], "keywords": "linux foundation devops sre lfs162 certificacao certification",
+      "pt": "LFS162: Introduction to DevOps and Site Reliability Engineering (The Linux Foundation).",
+      "en": "LFS162: Introduction to DevOps and Site Reliability Engineering (The Linux Foundation)." },
+    { "id": "lfs158", "skills": ["kubernetes"], "keywords": "linux foundation kubernetes lfs158 certificacao certification",
+      "pt": "LFS158: Introduction to Kubernetes (The Linux Foundation).",
+      "en": "LFS158: Introduction to Kubernetes (The Linux Foundation)." },
+    { "id": "fcc", "skills": ["csharp"], "keywords": "freecodecamp csharp microsoft certificacao certification",
+      "pt": "Foundational C# with Microsoft (freeCodeCamp / Microsoft).",
+      "en": "Foundational C# with Microsoft (freeCodeCamp / Microsoft)." },
+    { "id": "courses", "skills": ["csharp", "dotnet", "sqlserver"], "keywords": "cursos presenciais curso arquitetura mvc programacao database administration courses training",
+      "pt": "Cursos presenciais: Arquitetura de Software .NET (24 h, 2016), ASP.NET MVC 5 Enterprise Applications (24 h, 2017), 20483 Programação em C# (40 h, 2015) e 40364A Database Administration Fundamentals (20 h, 2015).",
+      "en": "In-person courses: .NET Software Architecture (24 h, 2016), ASP.NET MVC 5 Enterprise Applications (24 h, 2017), 20483 Programming in C# (40 h, 2015) and 40364A Database Administration Fundamentals (20 h, 2015)." }
+  ],
+
+  "categories": [
+    { "id": "backend", "pt": "Back-end", "en": "Back end" },
+    { "id": "frontend", "pt": "Front-end", "en": "Front end" },
+    { "id": "architecture", "pt": "Arquitetura", "en": "Architecture" },
+    { "id": "data", "pt": "Banco de dados", "en": "Databases" },
+    { "id": "cloud", "pt": "Cloud e DevOps", "en": "Cloud & DevOps" },
+    { "id": "ai", "pt": "IA", "en": "AI" },
+    { "id": "practices", "pt": "Práticas", "en": "Practices" }
+  ],
+
+  "skills": [
+    { "id": "csharp", "name": "C#", "category": "backend", "aliases": ["c#", "csharp", "c sharp"], "github": ["C#"] },
+    { "id": "dotnet", "name": ".NET 8", "category": "backend", "aliases": [".net", "dotnet", ".net 8", ".net core", "net core"] },
+    { "id": "aspnetcore", "name": "ASP.NET Core", "category": "backend", "aliases": ["asp.net core", "aspnet core", "asp.net", "aspnet", "web api", "mvc"] },
+    { "id": "rest", "name": "REST APIs", "name_pt": "APIs REST", "category": "backend", "aliases": ["rest", "api rest", "apis rest", "restful", "api", "apis"] },
+    { "id": "efcore", "name": "Entity Framework Core", "category": "backend", "aliases": ["entity framework", "ef core", "efcore", "orm"] },
+    { "id": "swagger", "name": "Swagger / OpenAPI", "category": "backend", "aliases": ["swagger", "openapi"] },
+    { "id": "jwt", "name": "JWT", "category": "backend", "aliases": ["jwt", "jwt bearer", "autenticacao", "authentication"] },
+    { "id": "xunit", "name": "xUnit", "category": "backend", "aliases": ["xunit", "testes unitarios", "teste unitario", "unit tests", "unit testing", "testes", "tests", "fluentassertions"] },
+
+    { "id": "angular", "name": "Angular", "category": "frontend", "aliases": ["angular"] },
+    { "id": "typescript", "name": "TypeScript", "category": "frontend", "aliases": ["typescript", "ts"], "github": ["TypeScript"] },
+    { "id": "javascript", "name": "JavaScript", "category": "frontend", "aliases": ["javascript", "js", "three.js", "threejs", "glsl"], "github": ["JavaScript"] },
+    { "id": "signals", "name": "Angular Signals", "category": "frontend", "aliases": ["signals", "standalone components"] },
+    { "id": "html-css", "name": "HTML & CSS", "category": "frontend", "aliases": ["html", "css", "html5", "css3"], "github": ["HTML", "CSS"] },
+    { "id": "tailwind", "name": "Tailwind CSS", "category": "frontend", "aliases": ["tailwind", "tailwind css"] },
+    { "id": "govbr", "name": "Design System GOV.BR", "category": "frontend", "aliases": ["gov.br", "govbr", "design system", "acessibilidade", "accessibility"] },
+
+    { "id": "clean-architecture", "name": "Clean Architecture", "category": "architecture", "aliases": ["clean architecture", "arquitetura limpa", "repository", "injecao de dependencia", "dependency injection"] },
+    { "id": "microservices", "name": "Microservices", "name_pt": "Microsserviços", "category": "architecture", "aliases": ["microservices", "microsservicos", "microservicos", "microservice", "sistemas distribuidos", "distributed systems"] },
+    { "id": "cqrs", "name": "CQRS", "category": "architecture", "aliases": ["cqrs"] },
+    { "id": "event-sourcing", "name": "Event Sourcing", "category": "architecture", "aliases": ["event sourcing"] },
+    { "id": "outbox", "name": "Outbox", "category": "architecture", "aliases": ["outbox"] },
+    { "id": "saga", "name": "Saga", "category": "architecture", "aliases": ["saga"] },
+    { "id": "resilience", "name": "Retry & Circuit Breaker", "category": "architecture", "aliases": ["retry", "circuit breaker", "resiliencia", "resilience"] },
+    { "id": "ddd", "name": "DDD", "category": "architecture", "aliases": ["ddd", "domain driven design"] },
+
+    { "id": "sqlserver", "name": "SQL Server", "category": "data", "aliases": ["sql server", "sqlserver", "sql", "t-sql", "tsql", "banco de dados", "database", "databases"] },
+    { "id": "postgresql", "name": "PostgreSQL", "category": "data", "aliases": ["postgresql", "postgres"] },
+    { "id": "oracle", "name": "Oracle", "category": "data", "aliases": ["oracle", "pl/sql", "plsql"] },
+    { "id": "firebase", "name": "Firebase / Firestore", "category": "data", "aliases": ["firebase", "firestore", "nosql"] },
+
+    { "id": "aws", "name": "AWS", "category": "cloud", "aliases": ["aws", "amazon web services", "ec2", "s3", "iam", "vpc", "rds", "cloudwatch", "dynamodb"] },
+    { "id": "azure", "name": "Azure", "category": "cloud", "aliases": ["azure", "microsoft azure"] },
+    { "id": "terraform", "name": "Terraform", "category": "cloud", "aliases": ["terraform", "iac", "infraestrutura como codigo", "infrastructure as code"], "github": ["HCL"] },
+    { "id": "docker", "name": "Docker", "category": "cloud", "aliases": ["docker", "docker compose", "containers", "conteineres"], "github": ["Dockerfile"] },
+    { "id": "kubernetes", "name": "Kubernetes", "category": "cloud", "aliases": ["kubernetes", "k8s"] },
+    { "id": "cicd", "name": "CI/CD", "category": "cloud", "aliases": ["ci/cd", "cicd", "ci cd", "pipeline", "pipelines", "deploy", "devops"] },
+    { "id": "azure-devops", "name": "Azure DevOps", "category": "cloud", "aliases": ["azure devops"] },
+    { "id": "github-actions", "name": "GitHub Actions", "category": "cloud", "aliases": ["github actions", "actions"] },
+    { "id": "app-insights", "name": "Application Insights", "category": "cloud", "aliases": ["application insights", "app insights", "observabilidade", "observability", "monitoramento", "monitoring"] },
+    { "id": "serilog", "name": "Serilog", "category": "cloud", "aliases": ["serilog", "logs", "logging"] },
+    { "id": "linux", "name": "Linux", "category": "cloud", "aliases": ["linux", "bash", "shell"], "github": ["Shell"] },
+
+    { "id": "rag", "name": "RAG", "category": "ai", "aliases": ["rag", "retrieval augmented generation", "ia generativa", "generative ai", "genai", "llm", "llms", "ia", "ai", "inteligencia artificial", "artificial intelligence"] },
+    { "id": "langchain", "name": "LangChain", "category": "ai", "aliases": ["langchain"] },
+    { "id": "ollama", "name": "Ollama", "category": "ai", "aliases": ["ollama", "llm local", "llms locais", "local llm"] },
+    { "id": "chromadb", "name": "ChromaDB", "category": "ai", "aliases": ["chromadb", "chroma", "vector database", "banco vetorial", "embeddings"] },
+    { "id": "llm-eval", "name": "LLM evaluation", "name_pt": "Avaliação de LLM", "category": "ai", "aliases": ["avaliacao", "evaluation", "reranking", "cross-encoder", "mrr", "hit@5"] },
+    { "id": "gemini", "name": "Google Gemini API", "category": "ai", "aliases": ["gemini", "google gemini"] },
+    { "id": "fine-tuning", "name": "Fine-tuning (LoRA)", "category": "ai", "aliases": ["fine-tuning", "fine tuning", "finetuning", "lora", "peft", "sft", "qwen"] },
+    { "id": "python", "name": "Python", "category": "ai", "aliases": ["python", "streamlit"], "github": ["Python", "Jupyter Notebook"] },
+
+    { "id": "scrum", "name": "Scrum", "category": "practices", "aliases": ["scrum", "agile", "agil", "ageis", "metodologias ageis", "trabalho em equipe", "trabalhar em equipe", "equipe", "teamwork", "team"] },
+    { "id": "git", "name": "Git", "category": "practices", "aliases": ["git", "github", "versionamento", "version control"] }
+  ]
+}

@@ -21,8 +21,9 @@ Then open http://localhost:8000.
 - `assets/css/style.css`: styles, light and dark theme
 - `assets/js/main.js`: theme toggle, language toggle (EN / PT-BR) and mobile menu
 - `assets/js/repos.js`: the "More on GitHub" list on the home page
-- `assets/js/chat.js`: the "Ask about me" chat in the About section
-- `chat-api/`: the small backend (Cloudflare Worker) that answers the chat
+- `assets/js/agent.js`: Eder's agent (chat with autocomplete, clickable skills, welcome tour)
+- `kb/profile.json`: the résumé the agent answers from
+- `tools/build_kb.py`: builds `assets/data/kb.json` and the Skills section from `kb/profile.json`
 - `assets/img/`: images, favicon and the social sharing image (`og-image.png`)
 
 ## Add a blog post
@@ -41,9 +42,21 @@ The "More on GitHub" list under the featured project is loaded from the GitHub A
 - To show more or fewer, change `LIMIT` in the same file.
 - Private repositories never appear.
 
-## "Ask about me" chat
+## Eder's agent
 
-In the About section, recruiters can ask an AI questions such as "Does Eder know C#?". It answers only from the profile in `chat-api/src/profile.md` and the public GitHub repositories, and says so when something isn't there. It needs a small backend to keep the API key secret: see [`chat-api/README.md`](chat-api/README.md) for the setup. Until the backend URL is set in `index.html`, the chat stays hidden.
+The site has a small agent that runs entirely in the browser, with no paid AI, API key or server:
+
+- **Chat** in the About section. Recruiters ask things like "Does Eder know C#?" and get an answer built from the résumé: where he used the skill, for how long, an example from a job, and the projects behind it. Other questions are matched to the closest résumé passage with TF-IDF (a small retrieval step, like the "R" in RAG). When nothing matches, it says it doesn't know instead of guessing. The input suggests questions as you type.
+- **Clickable skills.** Each tag in the Skills section opens what he did with it, the projects that use it (with the last GitHub update), and other public repositories in that language.
+- **Welcome agent.** On the first visit a bubble offers a guided tour of his story. After that, the round button in the corner reopens it.
+
+### Update what the agent knows
+
+1. Edit `kb/profile.json`: facts, jobs, projects, certifications and skills. Each job and project lists the skill ids it proves.
+2. Run `python tools/build_kb.py` (Python 3, no packages needed). It rewrites `assets/data/kb.json` and the Skills section of `index.html`, and warns about any skill that no job, project or certification backs up.
+3. Commit both files.
+
+Repositories are read live from GitHub, so a new push shows up without rebuilding. To link a new repository to a skill, give it that skill's id as a GitHub topic (for example `angular`), or add it as a project in `kb/profile.json`.
 
 ## Translations
 

@@ -184,7 +184,7 @@ main { min-width: 0; }
 .repo-lang { background: var(--tag-bg); padding: .1rem .5rem; border-radius: 6px; font-family: inherit; }
 .repo-status { color: var(--muted); font-size: .95rem; }
 
-/* "Ask about me" chat (assets/js/chat.js, backend in chat-api/) */
+/* Eder's agent: chat, clickable skills and welcome tour (assets/js/agent.js) */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .ask { margin-top: 1.5rem; }
 .ask-title { margin-bottom: .25rem; }
@@ -192,18 +192,59 @@ main { min-width: 0; }
 .ask-suggestions { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0 0 .75rem; }
 .ask-chip { font: inherit; font-size: .85rem; padding: .3rem .7rem; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); color: var(--text); cursor: pointer; }
 .ask-chip:hover { border-color: var(--accent); }
-.ask-log { display: flex; flex-direction: column; gap: .5rem; max-height: 360px; overflow-y: auto; }
+.ask-log { display: flex; flex-direction: column; gap: .5rem; max-height: 420px; overflow-y: auto; }
 .ask-log:not(:empty) { margin-bottom: .75rem; }
-.ask-msg { max-width: 85%; padding: .55rem .8rem; border-radius: 12px; font-size: .95rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ask-msg { max-width: 88%; padding: .55rem .8rem; border-radius: 12px; font-size: .95rem; overflow-wrap: anywhere; }
+.ask-msg p { margin: 0 0 .4rem; }
+.ask-msg > :last-child { margin-bottom: 0; }
 .ask-msg.user { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
 :root[data-theme="dark"] .ask-msg.user { color: #0f1216; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ask-msg.user { color: #0f1216; } }
 .ask-msg.bot { align-self: flex-start; background: var(--tag-bg); color: var(--text); border-bottom-left-radius: 4px; }
-.ask-msg.error { color: var(--muted); font-style: italic; }
-.ask-msg.typing { color: var(--muted); }
-.ask-form { display: flex; gap: .5rem; }
-.ask-form input { flex: 1; min-width: 0; font: inherit; font-size: .95rem; padding: .45rem .75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
-.ask-form input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-.ask-send { font: inherit; font-size: .9rem; cursor: pointer; }
-.ask-send:disabled { opacity: .6; cursor: default; }
+.ask-msg.error, .ask-msg.typing { color: var(--muted); font-style: italic; }
+.ask-form { display: flex; gap: .5rem; align-items: flex-start; }
+.ask-field { position: relative; flex: 1; min-width: 0; }
+.ask-field input { width: 100%; font: inherit; font-size: .95rem; padding: .45rem .75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+.ask-field input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ask-complete { position: absolute; left: 0; right: 0; bottom: calc(100% + 4px); z-index: 5; list-style: none; margin: 0; padding: .3rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); }
+.ask-option { padding: .4rem .6rem; border-radius: 6px; font-size: .92rem; cursor: pointer; }
+.ask-option:hover, .ask-option[aria-selected="true"] { background: var(--accent-soft); }
+.ask-send { font: inherit; font-size: .9rem; cursor: pointer; padding: .45rem .9rem; }
 .ask-note { color: var(--muted); font-size: .8rem; margin: .6rem 0 0; }
+.agent-links { margin: .2rem 0 .4rem; padding-left: 1.1rem; }
+.agent-links li { margin: .15rem 0; }
+.agent-meta { color: var(--muted); font-size: .85em; }
+.agent-sub { color: var(--muted); font-size: .88rem; }
+.agent-quote { border-left: 3px solid var(--accent); padding-left: .6rem; color: var(--muted); font-size: .92rem; }
+.agent-source { color: var(--muted); font-size: .8rem; }
+.agent-skill-name { font-weight: 600; }
+
+/* Clickable skills */
+.skills .tags li { background: none; padding: 0; }
+.skill { font: inherit; font-size: .8rem; padding: .15rem .55rem; border-radius: 6px; border: 1px solid transparent; background: var(--tag-bg); color: var(--muted); cursor: pointer; }
+.skill:hover, .skill[aria-expanded="true"] { border-color: var(--accent); color: var(--text); }
+.skills-hint { color: var(--muted); font-size: .9rem; margin: .9rem 0 0; }
+.skill-panel { margin-top: 1rem; }
+.skill-panel:focus { outline: none; }
+.skill-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .25rem; }
+.skill-panel-head h3 { margin: 0; }
+.skill-close { width: 32px; height: 32px; font-size: 1.2rem; line-height: 1; }
+.skill-ask { margin-top: .5rem; cursor: pointer; font: inherit; font-size: .85rem; }
+
+/* Welcome agent */
+.agent { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
+.agent-launcher { width: 52px; height: 52px; border-radius: 50%; border: 0; background: var(--accent); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow); }
+:root[data-theme="dark"] .agent-launcher { color: #0f1216; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .agent-launcher { color: #0f1216; } }
+.agent-launcher svg { width: 26px; height: 26px; }
+.agent-bubble { width: min(340px, calc(100vw - 32px)); background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 14px 14px 4px 14px; padding: 1rem; box-shadow: 0 8px 30px rgba(0,0,0,.18); font-size: .95rem; animation: agent-in .2s ease-out; }
+.agent-bubble p { margin: 0 0 .75rem; }
+.agent-step { color: var(--muted); font-size: .8rem; font-family: var(--mono); margin-bottom: .35rem !important; }
+.agent-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+.agent-actions .btn { font: inherit; font-size: .88rem; cursor: pointer; padding: .35rem .8rem; }
+.agent-actions .agent-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .agent-actions .agent-primary { color: #0f1216; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .agent-actions .agent-primary { color: #0f1216; } }
+.agent-actions .agent-ghost { margin-left: auto; border-color: transparent; background: none; color: var(--muted); }
+.agent-focus { outline: 2px solid var(--accent); outline-offset: 10px; border-radius: 8px; }
+@keyframes agent-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

@@ -98,22 +98,25 @@
         <p data-pt="Agora estou em transição para a área de &lt;strong&gt;Inovação em TI&lt;/strong&gt;. Meu foco atual é &lt;strong&gt;RAG (Retrieval-Augmented Generation) com LLMs locais e on-premise&lt;/strong&gt;: IA que roda onde os dados precisam ficar. Me importo tanto com a engenharia em volta do modelo quanto com o próprio modelo: CI/CD no Azure DevOps, observabilidade com Application Insights, arquitetura distribuída resiliente e testes confiáveis.">I'm now moving into an <strong>IT Innovation</strong> role. My current focus is <strong>Retrieval-Augmented Generation (RAG) with local, on-premise LLMs</strong>: AI that can run where the data has to stay. I care about the engineering around the model as much as the model itself: CI/CD on Azure DevOps, observability with Application Insights, resilient distributed architecture, and tests you can trust.</p>
         <p data-pt="Também gosto de olhar as respostas de IA com senso crítico. Um bom assistente é aquele que você consegue verificar, por isso construo ferramentas que mostram suas fontes.">I also like to look at AI answers with a critical eye. A good assistant is one you can check, so I build tools that show their sources.</p>
 
-        <!-- "Ask about Eder" chat. Set data-endpoint to the Worker URL from chat-api/ (see README); empty = hidden. -->
-        <div id="ask" class="card ask" data-endpoint="" hidden>
-          <h3 class="ask-title" data-pt="Pergunte sobre mim">Ask about me</h3>
-          <p class="ask-intro" data-pt="Recrutador? Pergunte para uma IA que responde só com base no meu currículo e nos meus repositórios. Se não estiver lá, ela diz que não sabe.">Recruiter? Ask an AI that answers only from my résumé and my repositories. If it's not there, it says it doesn't know.</p>
+        <!-- Eder's agent: answers from kb/profile.json in the browser (assets/js/agent.js). No API, no cost. -->
+        <div id="ask" class="card ask">
+          <h3 class="ask-title" data-pt="Pergunte ao agente do Eder">Ask Eder's agent</h3>
+          <p class="ask-intro" data-pt="Recrutador? Pergunte, por exemplo, &quot;O Eder sabe C#?&quot;. O agente responde só com o que está no currículo e nos projetos dele, e diz quando não sabe.">Recruiter? Ask, for example, "Does Eder know C#?". The agent answers only from his résumé and projects, and says when it doesn't know.</p>
           <ul class="ask-suggestions" aria-label="Example questions">
             <li><button type="button" class="ask-chip" data-pt="O Eder sabe C#?">Does Eder know C#?</button></li>
             <li><button type="button" class="ask-chip" data-pt="Ele já trabalhou com RAG?">Has he worked with RAG?</button></li>
-            <li><button type="button" class="ask-chip" data-pt="Quais projetos ele tem no GitHub?">What projects are on his GitHub?</button></li>
+            <li><button type="button" class="ask-chip" data-pt="Onde ele trabalhou?">Where has he worked?</button></li>
           </ul>
           <div class="ask-log" aria-live="polite"></div>
-          <form class="ask-form">
+          <form class="ask-form" autocomplete="off">
             <label class="visually-hidden" for="ask-input" data-pt="Sua pergunta">Your question</label>
-            <input id="ask-input" name="q" type="text" maxlength="500" autocomplete="off" required>
+            <div class="ask-field">
+              <input id="ask-input" name="q" type="text" maxlength="200" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ask-complete" required>
+              <ul id="ask-complete" class="ask-complete" role="listbox" hidden></ul>
+            </div>
             <button class="btn ask-send" type="submit" data-pt="Perguntar">Ask</button>
           </form>
-          <p class="ask-note" data-pt="Respostas geradas por IA (Claude). Confirme detalhes importantes comigo.">AI-generated answers (Claude). Please confirm important details with me.</p>
+          <p class="ask-note" data-pt="Funciona direto no navegador, sem IA paga: busca no currículo do Eder (TF-IDF) gerada por um script Python. Confirme detalhes importantes com ele.">Runs in your browser with no paid AI: a search over Eder's résumé (TF-IDF) built by a Python script. Please confirm important details with him.</p>
         </div>
       </section>
 
@@ -122,7 +125,7 @@
         <ul class="news">
           <li><time datetime="2026-11">Nov 2026</time><span data-pt="Lancei este site e o &lt;a href=&quot;blog/&quot;&gt;blog de estudos&lt;/a&gt;.">Launched this site and the <a href="blog/">study blog</a>.</span></li>
           <li><time datetime="2026-11">Nov 2026</time><span data-pt="Publiquei o projeto &lt;a href=&quot;#projects&quot;&gt;Agente RAG Local&lt;/a&gt; no GitHub.">Published the <a href="#projects">Local RAG Agent</a> project on GitHub.</span></li>
-          <li><time datetime="2026">2026</time><span data-pt="Concluí o &lt;strong&gt;AWS re/Start Cloud Foundations&lt;/strong&gt; (300 horas).">Completed <strong>AWS re/Start Cloud Foundations</strong> (300 hours).</span></li>
+          <li><time datetime="2026">2026</time><span data-pt="Cursando o &lt;strong&gt;AWS re/Start Cloud Foundations&lt;/strong&gt; (300 horas, presencial).">Taking <strong>AWS re/Start Cloud Foundations</strong> (300 hours, in person).</span></li>
         </ul>
       </section>
 
@@ -159,26 +162,35 @@
             <h3 data-pt="Desenvolvedor Full-Stack Pleno">Full-Stack Developer (Mid-level)</h3>
             <div class="org">G&amp;P Projetos e Sistemas</div>
             <ul>
-              <li data-pt="Desenvolvi e mantive sistemas para o setor elétrico regulado com .NET 8, Angular e SQL Server.">Built and maintained systems for the regulated electricity sector with .NET 8, Angular and SQL Server.</li>
-              <li data-pt="Modernizei aplicações legadas para ASP.NET Core e configurei pipelines de CI/CD no Azure DevOps.">Modernised legacy applications to ASP.NET Core and set up CI/CD pipelines on Azure DevOps.</li>
-              <li data-pt="Apliquei padrões distribuídos (CQRS, Outbox, Saga) e políticas de resiliência (Retry, Circuit Breaker); adicionei monitoramento com Application Insights.">Applied distributed patterns (CQRS, Outbox, Saga) and resilience policies (Retry, Circuit Breaker); added monitoring with Application Insights.</li>
+              <li data-pt="Desenvolvi e modernizei sistemas críticos da ANEEL com ASP.NET Core (.NET 8), Angular, SQL Server e EF Core em Clean Architecture.">Built and modernised critical ANEEL systems with ASP.NET Core (.NET 8), Angular, SQL Server and EF Core in Clean Architecture.</li>
+              <li data-pt="Projetei soluções de IA Generativa com RAG e LLMs on-premise, mantendo dados sensíveis dentro da agência.">Designed generative AI solutions with RAG and on-premise LLMs, keeping sensitive data inside the agency.</li>
+              <li data-pt="Implementei CQRS, Event Sourcing, Outbox e Saga entre microsserviços; APIs REST com Swagger e JWT; CI/CD no Azure DevOps; xUnit, Serilog e Application Insights.">Implemented CQRS, Event Sourcing, Outbox and Saga across microservices; REST APIs with Swagger and JWT; CI/CD on Azure DevOps; xUnit, Serilog and Application Insights.</li>
             </ul>
           </li>
           <li>
             <div class="when">2019 – 2022</div>
-            <h3 data-pt="Analista de Sistemas Júnior">Systems Analyst (Junior)</h3>
-            <div class="org">PSG</div>
+            <h3 data-pt="Analista de Sistemas">Systems Analyst</h3>
+            <div class="org">INOVVATI Tecnologia</div>
             <ul>
-              <li data-pt="Desenvolvi sistemas web para clientes do setor público, seguindo o Design System GOV.BR.">Developed web systems for public-sector clients, following the GOV.BR Design System.</li>
-              <li data-pt="Escrevi testes unitários com xUnit e trabalhei em modelos de dados com Entity Framework Core.">Wrote unit tests with xUnit and worked on data models with Entity Framework Core.</li>
+              <li data-pt="Migrei aplicações de órgãos estaduais (COGESP-MS) de ASP.NET para ASP.NET Core com zero downtime, incluindo Folha de Pagamento e Portal da Transparência.">Migrated state agency applications (COGESP-MS) from ASP.NET to ASP.NET Core with zero downtime, including Payroll and the Transparency Portal.</li>
+              <li data-pt="Projetei microsserviços e APIs REST com Retry e Circuit Breaker, com testes em xUnit e Scrum.">Designed microservices and REST APIs with Retry and Circuit Breaker, with xUnit tests and Scrum.</li>
             </ul>
           </li>
           <li>
             <div class="when">2016 – 2019</div>
             <h3 data-pt="Analista de Sistemas">Systems Analyst</h3>
-            <div class="org">Easy Net Tecnologia</div>
+            <div class="org">Easy Net Tecnologia da Informação</div>
             <ul>
-              <li data-pt="Desenvolvi e dei suporte a aplicações corporativas, do levantamento de requisitos à implantação.">Built and supported business applications, from requirements to deployment.</li>
+              <li data-pt="Conduzi a migração de sistemas WebForms para ASP.NET Core, SQL Server e EF Core na Assembleia Legislativa de MS, sem interrupção.">Led the migration of WebForms systems to ASP.NET Core, SQL Server and EF Core at the MS Legislative Assembly, with no downtime.</li>
+              <li data-pt="Desenvolvi módulos de um SaaS de ponto eletrônico e atuei na SANESUL diagnosticando gargalos de performance.">Built modules of a time-tracking SaaS and worked at SANESUL diagnosing performance bottlenecks.</li>
+            </ul>
+          </li>
+          <li>
+            <div class="when">2015</div>
+            <h3 data-pt="Analista de Suporte Técnico">Technical Support Analyst</h3>
+            <div class="org">Precisa Informática</div>
+            <ul>
+              <li data-pt="Implantei ERPs e PDVs, fiz troubleshooting de aplicações e bancos de dados e treinei usuários.">Rolled out ERP and point-of-sale systems, troubleshot applications and databases, and trained users.</li>
             </ul>
           </li>
         </ol>
@@ -187,31 +199,47 @@
       <section id="skills" class="section">
         <h2 class="section-title" data-pt="Habilidades">Skills</h2>
         <div class="skills">
+          <!-- kb:skills:start -->
           <div class="card">
             <h3 data-pt="Back-end">Back end</h3>
-            <ul class="tags"><li>.NET 8</li><li>C#</li><li>ASP.NET Core</li><li>Entity Framework Core</li><li>SQL Server</li><li>xUnit</li></ul>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="csharp">C#</button></li><li><button type="button" class="skill" data-skill="dotnet">.NET 8</button></li><li><button type="button" class="skill" data-skill="aspnetcore">ASP.NET Core</button></li><li><button type="button" class="skill" data-skill="rest" data-pt="APIs REST">REST APIs</button></li><li><button type="button" class="skill" data-skill="efcore">Entity Framework Core</button></li><li><button type="button" class="skill" data-skill="swagger">Swagger / OpenAPI</button></li><li><button type="button" class="skill" data-skill="jwt">JWT</button></li><li><button type="button" class="skill" data-skill="xunit">xUnit</button></li></ul>
           </div>
           <div class="card">
             <h3 data-pt="Front-end">Front end</h3>
-            <ul class="tags"><li>Angular</li><li>TypeScript</li><li>HTML &amp; CSS</li><li>GOV.BR Design System</li></ul>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="angular">Angular</button></li><li><button type="button" class="skill" data-skill="typescript">TypeScript</button></li><li><button type="button" class="skill" data-skill="javascript">JavaScript</button></li><li><button type="button" class="skill" data-skill="signals">Angular Signals</button></li><li><button type="button" class="skill" data-skill="html-css">HTML &amp; CSS</button></li><li><button type="button" class="skill" data-skill="tailwind">Tailwind CSS</button></li><li><button type="button" class="skill" data-skill="govbr">Design System GOV.BR</button></li></ul>
           </div>
           <div class="card">
             <h3 data-pt="Arquitetura">Architecture</h3>
-            <ul class="tags"><li>Microservices</li><li>CQRS</li><li>Event Sourcing</li><li>Outbox</li><li>Saga</li><li>Retry &amp; Circuit Breaker</li></ul>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="clean-architecture">Clean Architecture</button></li><li><button type="button" class="skill" data-skill="microservices" data-pt="Microsserviços">Microservices</button></li><li><button type="button" class="skill" data-skill="cqrs">CQRS</button></li><li><button type="button" class="skill" data-skill="event-sourcing">Event Sourcing</button></li><li><button type="button" class="skill" data-skill="outbox">Outbox</button></li><li><button type="button" class="skill" data-skill="saga">Saga</button></li><li><button type="button" class="skill" data-skill="resilience">Retry &amp; Circuit Breaker</button></li><li><button type="button" class="skill" data-skill="ddd">DDD</button></li></ul>
           </div>
           <div class="card">
-            <h3 data-pt="IA e Nuvem">AI &amp; Cloud</h3>
-            <ul class="tags"><li>RAG</li><li>LangChain</li><li>Ollama</li><li>ChromaDB</li><li>Docker</li><li>Azure DevOps</li><li>Application Insights</li><li>AWS</li></ul>
+            <h3 data-pt="Banco de dados">Databases</h3>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="sqlserver">SQL Server</button></li><li><button type="button" class="skill" data-skill="postgresql">PostgreSQL</button></li><li><button type="button" class="skill" data-skill="oracle">Oracle</button></li><li><button type="button" class="skill" data-skill="firebase">Firebase / Firestore</button></li></ul>
           </div>
+          <div class="card">
+            <h3 data-pt="Cloud e DevOps">Cloud &amp; DevOps</h3>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="aws">AWS</button></li><li><button type="button" class="skill" data-skill="azure">Azure</button></li><li><button type="button" class="skill" data-skill="terraform">Terraform</button></li><li><button type="button" class="skill" data-skill="docker">Docker</button></li><li><button type="button" class="skill" data-skill="kubernetes">Kubernetes</button></li><li><button type="button" class="skill" data-skill="cicd">CI/CD</button></li><li><button type="button" class="skill" data-skill="azure-devops">Azure DevOps</button></li><li><button type="button" class="skill" data-skill="github-actions">GitHub Actions</button></li><li><button type="button" class="skill" data-skill="app-insights">Application Insights</button></li><li><button type="button" class="skill" data-skill="serilog">Serilog</button></li><li><button type="button" class="skill" data-skill="linux">Linux</button></li></ul>
+          </div>
+          <div class="card">
+            <h3 data-pt="IA">AI</h3>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="rag">RAG</button></li><li><button type="button" class="skill" data-skill="langchain">LangChain</button></li><li><button type="button" class="skill" data-skill="ollama">Ollama</button></li><li><button type="button" class="skill" data-skill="chromadb">ChromaDB</button></li><li><button type="button" class="skill" data-skill="llm-eval" data-pt="Avaliação de LLM">LLM evaluation</button></li><li><button type="button" class="skill" data-skill="gemini">Google Gemini API</button></li><li><button type="button" class="skill" data-skill="fine-tuning">Fine-tuning (LoRA)</button></li><li><button type="button" class="skill" data-skill="python">Python</button></li></ul>
+          </div>
+          <div class="card">
+            <h3 data-pt="Práticas">Practices</h3>
+            <ul class="tags"><li><button type="button" class="skill" data-skill="scrum">Scrum</button></li><li><button type="button" class="skill" data-skill="git">Git</button></li></ul>
+          </div>
+          <!-- kb:skills:end -->
         </div>
+        <p class="skills-hint" data-pt="Clique em uma habilidade para ver onde o Eder usou e em quais projetos.">Click a skill to see where Eder used it and in which projects.</p>
+        <div id="skill-panel" class="card skill-panel" hidden tabindex="-1" aria-live="polite"></div>
       </section>
 
       <section id="certifications" class="section">
         <h2 class="section-title" data-pt="Certificações">Certifications</h2>
         <ul class="plain">
-          <li><span data-pt="AWS re/Start: Cloud Foundations (300 horas)">AWS re/Start: Cloud Foundations (300 hours)</span><span class="meta">AWS · 2026</span></li>
+          <li><span data-pt="AWS re/Start: Cloud Foundations (300 horas, em andamento)">AWS re/Start: Cloud Foundations (300 hours, in progress)</span><span class="meta">Escola da Nuvem · 2026</span></li>
           <li><span>AWS Cloud Quest: Generative AI Practitioner</span><span class="meta">AWS</span></li>
-          <li><span>Microsoft Azure Fundamentals</span><span class="meta">Microsoft</span></li>
+          <li><span>Microsoft Certified: Azure Fundamentals (AZ-900)</span><span class="meta">Microsoft</span></li>
           <li><span>LFS158: Introduction to Kubernetes</span><span class="meta">The Linux Foundation</span></li>
           <li><span>LFS162: Introduction to DevOps and SRE</span><span class="meta">The Linux Foundation</span></li>
           <li><span>Foundational C# with Microsoft</span><span class="meta">freeCodeCamp</span></li>
@@ -222,6 +250,7 @@
         <h2 class="section-title" data-pt="Formação">Education</h2>
         <ul class="plain">
           <li><span data-pt="Bacharelado em Engenharia da Computação, Uniderp">B.Eng. in Computer Engineering, Uniderp</span><span class="meta">2012 – 2018</span></li>
+          <li><span data-pt="Licenciatura em Química, UFMS (em andamento)">Teaching degree in Chemistry, UFMS (in progress)</span><span class="meta" data-pt="previsão 2027">expected 2027</span></li>
         </ul>
       </section>
 
@@ -256,6 +285,6 @@
   </footer>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/repos.js"></script>
-  <script src="assets/js/chat.js"></script>
+  <script src="assets/js/agent.js"></script>
 </body>
 </html>
