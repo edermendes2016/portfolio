@@ -1,0 +1,28 @@
+# Cloudflare Worker that powers the "Ask about Eder" chat on the portfolio.
+# Deploy: `npx wrangler deploy` (see chat-api/README.md).
+name = "portfolio-chat-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# profile.md is bundled as plain text.
+rules = [{ type = "Text", globs = ["**/*.md"], fallthrough = true }]
+
+[vars]
+# Sites allowed to call the chat (comma-separated, exact origins, no trailing slash).
+ALLOWED_ORIGINS = "https://edermendes2016.github.io,http://localhost:8000"
+
+# Abuse protection. Each visitor IP: 6 questions per minute.
+[[ratelimits]]
+name = "PER_IP_LIMIT"
+namespace_id = "1001"
+simple = { limit = 6, period = 60 }
+
+# Whole site: 40 questions per minute, a ceiling on cost if many IPs are used.
+[[ratelimits]]
+name = "GLOBAL_LIMIT"
+namespace_id = "1002"
+simple = { limit = 40, period = 60 }
+
+[observability]
+enabled = true

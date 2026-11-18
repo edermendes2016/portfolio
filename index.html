@@ -97,6 +97,24 @@
         <p class="lead" data-pt="Sou desenvolvedor full-stack com quase dez anos construindo e modernizando sistemas corporativos com &lt;strong&gt;.NET 8 / C#&lt;/strong&gt;, &lt;strong&gt;Angular&lt;/strong&gt;, &lt;strong&gt;SQL Server&lt;/strong&gt; e &lt;strong&gt;Entity Framework Core&lt;/strong&gt;, principalmente para o setor público e o setor elétrico regulado.">I'm a full-stack developer with nearly ten years building and modernising business systems with <strong>.NET 8 / C#</strong>, <strong>Angular</strong>, <strong>SQL Server</strong> and <strong>Entity Framework Core</strong>, mostly for the public sector and regulated utilities.</p>
         <p data-pt="Agora estou em transição para a área de &lt;strong&gt;Inovação em TI&lt;/strong&gt;. Meu foco atual é &lt;strong&gt;RAG (Retrieval-Augmented Generation) com LLMs locais e on-premise&lt;/strong&gt;: IA que roda onde os dados precisam ficar. Me importo tanto com a engenharia em volta do modelo quanto com o próprio modelo: CI/CD no Azure DevOps, observabilidade com Application Insights, arquitetura distribuída resiliente e testes confiáveis.">I'm now moving into an <strong>IT Innovation</strong> role. My current focus is <strong>Retrieval-Augmented Generation (RAG) with local, on-premise LLMs</strong>: AI that can run where the data has to stay. I care about the engineering around the model as much as the model itself: CI/CD on Azure DevOps, observability with Application Insights, resilient distributed architecture, and tests you can trust.</p>
         <p data-pt="Também gosto de olhar as respostas de IA com senso crítico. Um bom assistente é aquele que você consegue verificar, por isso construo ferramentas que mostram suas fontes.">I also like to look at AI answers with a critical eye. A good assistant is one you can check, so I build tools that show their sources.</p>
+
+        <!-- "Ask about Eder" chat. Set data-endpoint to the Worker URL from chat-api/ (see README); empty = hidden. -->
+        <div id="ask" class="card ask" data-endpoint="" hidden>
+          <h3 class="ask-title" data-pt="Pergunte sobre mim">Ask about me</h3>
+          <p class="ask-intro" data-pt="Recrutador? Pergunte para uma IA que responde só com base no meu currículo e nos meus repositórios. Se não estiver lá, ela diz que não sabe.">Recruiter? Ask an AI that answers only from my résumé and my repositories. If it's not there, it says it doesn't know.</p>
+          <ul class="ask-suggestions" aria-label="Example questions">
+            <li><button type="button" class="ask-chip" data-pt="O Eder sabe C#?">Does Eder know C#?</button></li>
+            <li><button type="button" class="ask-chip" data-pt="Ele já trabalhou com RAG?">Has he worked with RAG?</button></li>
+            <li><button type="button" class="ask-chip" data-pt="Quais projetos ele tem no GitHub?">What projects are on his GitHub?</button></li>
+          </ul>
+          <div class="ask-log" aria-live="polite"></div>
+          <form class="ask-form">
+            <label class="visually-hidden" for="ask-input" data-pt="Sua pergunta">Your question</label>
+            <input id="ask-input" name="q" type="text" maxlength="500" autocomplete="off" required>
+            <button class="btn ask-send" type="submit" data-pt="Perguntar">Ask</button>
+          </form>
+          <p class="ask-note" data-pt="Respostas geradas por IA (Claude). Confirme detalhes importantes comigo.">AI-generated answers (Claude). Please confirm important details with me.</p>
+        </div>
       </section>
 
       <section id="news" class="section">
@@ -238,5 +256,6 @@
   </footer>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/repos.js"></script>
+  <script src="assets/js/chat.js"></script>
 </body>
 </html>

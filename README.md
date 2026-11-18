@@ -21,6 +21,8 @@ Then open http://localhost:8000.
 - `assets/css/style.css`: styles, light and dark theme
 - `assets/js/main.js`: theme toggle, language toggle (EN / PT-BR) and mobile menu
 - `assets/js/repos.js`: the "More on GitHub" list on the home page
+- `assets/js/chat.js`: the "Ask about me" chat in the About section
+- `chat-api/`: the small backend (Cloudflare Worker) that answers the chat
 - `assets/img/`: images, favicon and the social sharing image (`og-image.png`)
 
 ## Add a blog post
@@ -38,6 +40,10 @@ The "More on GitHub" list under the featured project is loaded from the GitHub A
 - To hide a repository, add the topic `no-portfolio` to it on GitHub, or add its name to `EXCLUDE` in `assets/js/repos.js`.
 - To show more or fewer, change `LIMIT` in the same file.
 - Private repositories never appear.
+
+## "Ask about me" chat
+
+In the About section, recruiters can ask an AI questions such as "Does Eder know C#?". It answers only from the profile in `chat-api/src/profile.md` and the public GitHub repositories, and says so when something isn't there. It needs a small backend to keep the API key secret: see [`chat-api/README.md`](chat-api/README.md) for the setup. Until the backend URL is set in `index.html`, the chat stays hidden.
 
 ## Translations
 

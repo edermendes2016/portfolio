@@ -183,3 +183,27 @@ main { min-width: 0; }
 .repo-meta { display: flex; flex-wrap: wrap; gap: .4rem .75rem; align-items: center; color: var(--muted); font-size: .8rem; font-family: var(--mono); }
 .repo-lang { background: var(--tag-bg); padding: .1rem .5rem; border-radius: 6px; font-family: inherit; }
 .repo-status { color: var(--muted); font-size: .95rem; }
+
+/* "Ask about me" chat (assets/js/chat.js, backend in chat-api/) */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ask { margin-top: 1.5rem; }
+.ask-title { margin-bottom: .25rem; }
+.ask-intro { color: var(--muted); font-size: .95rem; margin-bottom: .75rem; }
+.ask-suggestions { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0 0 .75rem; }
+.ask-chip { font: inherit; font-size: .85rem; padding: .3rem .7rem; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); color: var(--text); cursor: pointer; }
+.ask-chip:hover { border-color: var(--accent); }
+.ask-log { display: flex; flex-direction: column; gap: .5rem; max-height: 360px; overflow-y: auto; }
+.ask-log:not(:empty) { margin-bottom: .75rem; }
+.ask-msg { max-width: 85%; padding: .55rem .8rem; border-radius: 12px; font-size: .95rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ask-msg.user { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+:root[data-theme="dark"] .ask-msg.user { color: #0f1216; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ask-msg.user { color: #0f1216; } }
+.ask-msg.bot { align-self: flex-start; background: var(--tag-bg); color: var(--text); border-bottom-left-radius: 4px; }
+.ask-msg.error { color: var(--muted); font-style: italic; }
+.ask-msg.typing { color: var(--muted); }
+.ask-form { display: flex; gap: .5rem; }
+.ask-form input { flex: 1; min-width: 0; font: inherit; font-size: .95rem; padding: .45rem .75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+.ask-form input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ask-send { font: inherit; font-size: .9rem; cursor: pointer; }
+.ask-send:disabled { opacity: .6; cursor: default; }
+.ask-note { color: var(--muted); font-size: .8rem; margin: .6rem 0 0; }
