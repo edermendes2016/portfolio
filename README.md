@@ -76,6 +76,10 @@ Save the photo as `assets/img/profile.jpg` (square, at least 400x400) and update
 
 The image at the top of the home page and the blog is `assets/img/banner.jpg` (2400x800), with a smaller `assets/img/banner-1200.jpg` for phones. It is a light, original illustration of a cozy home office (a developer at the desk with code and an AI chat bubble on the screen). Its source is `assets/img/banner-source.svg`: edit it, export it as JPG at 2400x800 and 1200x400, and keep the left side empty, because the text sits there. On phones the scene shows below the text.
 
+## Background music
+
+The note button in the top bar plays `assets/audio/samurai-theme.mp3`, an original 48-second loop in a Japanese samurai style (koto, shakuhachi, shamisen and taiko), composed and synthesised by `tools/samurai_theme.py`. It is off by default, only starts on a click, loops at 25% volume, and the button pauses it. The code is in `assets/js/main.js`.
+
 ## Layout
 
 A minimal look: light top bar, full-width banner with the name and headline, a profile column on the left (photo, role and links; on phones it folds into a "Follow" button) and sections with underlined titles. System fonts, light and dark theme. All styles are in `assets/css/style.css`.
