@@ -179,6 +179,7 @@ main { min-width: 0; animation: intro .3s both .35s; }
 /* ===== Cards ===== */
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; box-shadow: var(--shadow); }
 .project { display: grid; grid-template-columns: 220px 1fr; gap: 1.25rem; align-items: start; }
+.project + .project { margin-top: 1rem; }
 .project-thumb { border-radius: var(--radius); border: 1px solid var(--border); aspect-ratio: 16/10; object-fit: cover; width: 100%; height: auto; background: var(--tag-bg); }
 .project h3 { margin-bottom: .35rem; }
 .project p { color: var(--muted); font-size: .92rem; }
