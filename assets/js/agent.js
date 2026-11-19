@@ -283,7 +283,7 @@
   }
 
   function companies(kb, s) {
-    var names = s.experiences.map(function (id) { var o = pick(kb.expById[id].org); return o.charAt(0).toLowerCase() + o.slice(1); });
+    var names = s.experiences.map(function (id) { return pick(kb.expById[id].org); });
     if (names.length < 2) return names.join("");
     return names.slice(0, -1).join(", ") + (lang() === "pt" ? " e " : " and ") + names[names.length - 1];
   }
