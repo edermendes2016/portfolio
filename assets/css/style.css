@@ -87,7 +87,24 @@ pre code { background: none; padding: 0; color: inherit; }
 .music-toggle .pause { display: none; }
 .music-toggle[aria-pressed="true"] .play { display: none; }
 .music-toggle[aria-pressed="true"] .pause { display: block; }
-.music-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+.music-toggle[aria-pressed="true"], .fx-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+/* Pulses until the visitor clicks it once (assets/js/main.js) */
+.music-nudge { animation: nudge 2.4s ease-in-out infinite; }
+@keyframes nudge { 0%, 70%, 100% { box-shadow: 0 0 0 0 rgba(47,127,150,0); } 80% { box-shadow: 0 0 0 6px rgba(47,127,150,.25); transform: scale(1.06); } }
+
+/* ===== Ambient effects (assets/js/effects.js) ===== */
+.fx-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 40; pointer-events: none; image-rendering: pixelated; image-rendering: crisp-edges; }
+.fx-snes { position: fixed; inset: 0; z-index: 41; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,.035) 2px, rgba(0,0,0,.035) 3px),
+              radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,.07) 100%); }
+:root[data-theme="dark"] .fx-snes { background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,.14) 2px, rgba(0,0,0,.14) 3px),
+              radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.18) 100%); }
+/* 16-bit banner: the same scene, fewer colours and hard pixels */
+:root.fx-on .hero { background-image: var(--hero-fade), url("../img/banner-pixel.png"); image-rendering: pixelated; }
+@media (max-width: 900px) {
+  :root.fx-on .hero { background-image: url("../img/banner-pixel.png"); }
+  :root.fx-on[data-theme="dark"] .hero { background-image: linear-gradient(rgba(22,26,34,.92), rgba(22,26,34,.92)), url("../img/banner-pixel.png"); }
+}
 
 /* ===== Banner (hero) =====
    A light home-office illustration. Its left side is an empty wall, so the
@@ -230,9 +247,10 @@ main { min-width: 0; animation: intro .3s both .35s; }
 }
 @media (max-width: 640px) {
   .menu-toggle { display: inline-grid; }
-  .nav { position: relative; gap: .45rem; }
-  .brand { white-space: nowrap; font-size: .95rem; }
-  .icon-btn { width: 34px; height: 34px; }
+  .nav { position: relative; gap: .35rem; }
+  .brand { white-space: nowrap; font-size: .9rem; }
+  .icon-btn { width: 32px; height: 32px; }
+  .icon-btn svg { width: 16px; height: 16px; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: .5rem 1rem; box-shadow: 0 2px 4px rgba(0,0,0,.08); }
   .nav-links.open { display: flex; }
   .nav-links a { padding: .6rem 0; }
