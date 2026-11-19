@@ -69,3 +69,11 @@ English is the default text in the HTML. The Portuguese version of each element 
 ## Change the profile photo
 
 Save the photo as `assets/img/profile.jpg` (square, at least 400x400) and update the `src` of the `.avatar` image in `index.html`.
+
+## Change the banner
+
+The image behind the name at the top of the home page and the blog is `assets/img/banner.jpg` (2400x800), with a smaller `assets/img/banner-1200.jpg` for phones. The CSS puts a 50% dark layer over it so the white text stays readable. To use another image, replace both files with the same names.
+
+## Layout
+
+A minimal look: light top bar, full-width banner with the name and headline, a profile column on the left (photo, role and links; on phones it folds into a "Follow" button) and sections with underlined titles. System fonts, light and dark theme. All styles are in `assets/css/style.css`.

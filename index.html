@@ -23,9 +23,6 @@
   <meta name="twitter:image" content="https://edermendes2016.github.io/portfolio/assets/img/og-image.png">
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <script type="application/ld+json">
@@ -67,28 +64,39 @@
     </nav>
   </header>
 
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-inner">
+      <h1 class="hero-title">Eder Mendes Amaral</h1>
+      <p class="hero-lead" data-pt="Desenvolvedor Full-Stack .NET | C#, ASP.NET Core, Angular e SQL Server | AWS e Azure | Pair programming com IA">Full-Stack .NET Developer | C#, ASP.NET Core, Angular and SQL Server | AWS and Azure | Pair programming with AI</p>
+      <p class="hero-actions">
+        <a class="btn btn-light" href="#ask" data-pt="Pergunte ao agente">Ask the agent</a>
+        <a class="btn btn-light" href="#projects" data-pt="Ver projetos">See projects</a>
+      </p>
+    </div>
+  </section>
+
   <div class="layout">
-    <aside class="sidebar">
-      <!-- Replace with your photo: assets/img/profile.jpg -->
-      <img class="avatar" src="assets/img/avatar-placeholder.svg" alt="Eder Mendes Amaral" width="168" height="168">
-      <h1>Eder Mendes Amaral</h1>
-      <p class="role" data-pt="Desenvolvedor Full-Stack .NET">Full-Stack .NET Developer</p>
-      <p class="next-role" data-pt="Pair programming com IA">Pair programming with AI</p>
-      <div class="social">
-        <a href="https://www.linkedin.com/in/eder-mendes-amaral/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/edermendes2016" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-          GitHub
-        </a>
+    <aside class="sidebar" aria-label="Profile">
+      <div class="author">
+        <!-- Replace with your photo: assets/img/profile.jpg -->
+        <img class="avatar" src="assets/img/avatar-placeholder.svg" alt="Eder Mendes Amaral" width="175" height="175">
+        <div class="author-content">
+          <p class="author-name">Eder Mendes Amaral</p>
+          <p class="author-bio" data-pt="Desenvolvedor Full-Stack .NET">Full-Stack .NET Developer</p>
+          <p class="next-role" data-pt="Pair programming com IA">Pair programming with AI</p>
+        </div>
+        <div class="author-urls-wrapper">
+          <button class="btn follow-toggle" type="button" aria-expanded="false" aria-controls="author-urls" data-pt="Contato">Follow</button>
+          <ul id="author-urls" class="author-urls">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-pt="Campo Grande, MS · Aberto a remoto">Campo Grande, Brazil · Open to remote</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span data-pt="Inglês: avançado">English: advanced</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></svg><span data-pt="Engenharia da Computação">B.Eng. Computer Engineering</span></li>
+            <li><a href="https://www.linkedin.com/in/eder-mendes-amaral/" target="_blank" rel="noopener"><svg class="ico-linkedin" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a></li>
+            <li><a href="https://github.com/edermendes2016" target="_blank" rel="noopener"><svg class="ico-github" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>GitHub</a></li>
+            <li><a href="blog/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Blog</a></li>
+          </ul>
+        </div>
       </div>
-      <ul class="facts">
-        <li data-pt="Campo Grande, MS · Aberto a remoto">Campo Grande, Brazil · Open to remote</li>
-        <li data-pt="Inglês: avançado">English: advanced</li>
-        <li data-pt="Engenharia da Computação">B.Eng. Computer Engineering</li>
-      </ul>
     </aside>
 
     <main id="main">
@@ -278,8 +286,13 @@
 
   <footer class="site-footer">
     <div class="inner">
-      <span>© <span id="year">2026</span> Eder Mendes Amaral</span>
-      <span><a href="https://www.linkedin.com/in/eder-mendes-amaral/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/edermendes2016" target="_blank" rel="noopener">GitHub</a></span>
+      <ul class="footer-follow">
+        <li><strong data-pt="Siga:">Follow:</strong></li>
+        <li><a href="https://www.linkedin.com/in/eder-mendes-amaral/" target="_blank" rel="noopener"><svg class="ico-linkedin" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/edermendes2016" target="_blank" rel="noopener"><svg class="ico-github" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>GitHub</a></li>
+        <li><a href="blog/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Blog</a></li>
+      </ul>
+      <p class="footer-copy">© <span id="year">2026</span> Eder Mendes Amaral</p>
     </div>
   </footer>
   <script src="assets/js/main.js"></script>

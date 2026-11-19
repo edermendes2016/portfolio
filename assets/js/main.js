@@ -30,6 +30,20 @@
     });
   }
 
+  // Profile links ("Follow" button on small screens)
+  var followBtn = document.querySelector(".follow-toggle");
+  var urls = document.getElementById("author-urls");
+  if (followBtn && urls) {
+    followBtn.addEventListener("click", function () {
+      var open = urls.classList.toggle("open");
+      followBtn.setAttribute("aria-expanded", open);
+    });
+    document.addEventListener("click", function (e) {
+      if (!urls.classList.contains("open") || followBtn.contains(e.target) || urls.contains(e.target)) return;
+      urls.classList.remove("open"); followBtn.setAttribute("aria-expanded", "false");
+    });
+  }
+
   // Language toggle: English is the default; Portuguese text lives in data-pt attributes.
   var langBtn = document.querySelector(".lang-toggle");
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-pt]"));
