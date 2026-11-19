@@ -74,7 +74,7 @@ Save the photo as `assets/img/profile.jpg` (square, at least 400x400) and update
 
 ## Change the banner
 
-The image at the top of the home page and the blog is `assets/img/banner.jpg` (2400x800), with a smaller `assets/img/banner-1200.jpg` for phones. It is a light, original illustration of a cozy home office (a developer at the desk with code and an AI chat bubble on the screen, and a daruma doll for perseverance). The dark theme shows the same room at night, with rain clouds outside (`banner-night*.jpg`, `banner-night*-pixel.png`). The sources are `assets/img/banner-source.svg` and `assets/img/banner-night-source.svg`: edit it, export it as JPG at 2400x800 and 1200x400, and keep the left side empty, because the text sits there. On phones the scene shows below the text.
+The image at the top of the home page and the blog is `assets/img/banner.jpg` (2400x800), with a smaller `assets/img/banner-1200.jpg` for phones. It is a light, original illustration of a cozy home office (a developer at the desk with code and an AI chat bubble on the screen, and a daruma doll for perseverance). The dark theme shows the same room at night: the same window, with rain clouds, a hidden moon and a few stars (the rain itself is the animated effect) (`banner-night*.jpg`, `banner-night*-pixel.png`). The sources are `assets/img/banner-source.svg` and `assets/img/banner-night-source.svg`: edit it, export it as JPG at 2400x800 and 1200x400, and keep the left side empty, because the text sits there. On phones the scene shows below the text.
 
 ## Background music
 
