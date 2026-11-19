@@ -78,7 +78,11 @@ The image at the top of the home page and the blog is `assets/img/banner.jpg` (2
 
 ## Background music
 
-The note button in the top bar plays `assets/audio/samurai-theme.mp3`, an original 48-second loop in a Japanese samurai style (koto, shakuhachi, shamisen and taiko), composed and synthesised by `tools/samurai_theme.py`. It is off by default, only starts on a click, loops at 25% volume, and the button pauses it. The code is in `assets/js/main.js`.
+The note button in the top bar plays an original loop: `assets/audio/samurai-theme.mp3` (koto, shakuhachi, shamisen and taiko) in the light theme, and `assets/audio/night-rain-theme.mp3` (slower and more melodic, with soft rain) in the dark theme. Switching theme while it plays changes the track. Both were composed and synthesised by `tools/samurai_theme.py` and `tools/night_theme.py`. Music is off by default, only starts on a click and plays quietly. Until the visitor clicks the button once, it pulses and Eder's agent mentions it (stored as `music-clicked` in the browser).
+
+## Effects
+
+`assets/js/effects.js` draws ambient effects on a low-resolution canvas with hard pixels and faint scanlines, a light 16-bit look: cherry blossom petals in the light theme (now and then a gust of petals or a paper crane), and rain with drops sliding on the "glass" in the dark theme (now and then a shooting star or a paper lantern). The banner also gets a pixelated version (`assets/img/banner-pixel.png`). Effects never catch clicks, pause in background tabs, are off by default for visitors who prefer reduced motion, and the sparkle button in the top bar turns them on or off.
 
 ## Layout
 

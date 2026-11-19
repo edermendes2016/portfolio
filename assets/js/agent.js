@@ -650,9 +650,13 @@
   ];
   var TT = {
     en: { hello: "Hi, I'm Eder's agent. For a guided visit, just say yes and I'll walk you through his story so far.", yes: "Yes", no: "Not now",
-      menu: "How can I help?", tour: "Guided tour", ask: "Ask a question", next: "Next", back: "Back", done: "Done", exit: "Close", open: "Open Eder's agent", step: "{a} of {b}" },
+      menu: "How can I help?", tour: "Guided tour", ask: "Ask a question", next: "Next", back: "Back", done: "Done", exit: "Close", open: "Open Eder's agent", step: "{a} of {b}",
+      musicHint: "Psst! This site has a soundtrack: a samurai theme by day and a rainy night theme in dark mode. Want to hear it? The \u266A button at the top plays and pauses it.",
+      musicPlay: "Play music", musicLater: "Later" },
     pt: { hello: "Olá, eu sou o agente do Eder. Para uma navegação direcionada, basta dizer sim, e eu te guio pela história dele até o momento.", yes: "Sim", no: "Agora não",
-      menu: "Como posso ajudar?", tour: "Tour guiado", ask: "Fazer uma pergunta", next: "Próximo", back: "Voltar", done: "Concluir", exit: "Fechar", open: "Abrir o agente do Eder", step: "{a} de {b}" }
+      menu: "Como posso ajudar?", tour: "Tour guiado", ask: "Fazer uma pergunta", next: "Próximo", back: "Voltar", done: "Concluir", exit: "Fechar", open: "Abrir o agente do Eder", step: "{a} de {b}",
+      musicHint: "Psiu! Este site tem trilha sonora: um tema de samurai de dia e um tema de noite chuvosa no modo escuro. Quer ouvir? O botão \u266A lá no topo toca e pausa.",
+      musicPlay: "Tocar música", musicLater: "Depois" }
   };
   function tt(k) { return TT[lang()][k]; }
 
@@ -678,7 +682,14 @@
       return b;
     }
     function unfocus() { if (focused) focused.classList.remove("agent-focus"); focused = null; }
-    function hide() { bubbleEl.hidden = true; mode = null; unfocus(); launcher.setAttribute("aria-expanded", "false"); }
+    // Mention the music until the visitor clicks it once (stored by main.js), once per page view.
+    var musicHinted = false;
+    function wantMusicHint() { return !musicHinted && window.EderMusic && !window.EderMusic.clicked(); }
+    function hide() {
+      var was = mode;
+      bubbleEl.hidden = true; mode = null; unfocus(); launcher.setAttribute("aria-expanded", "false");
+      if (was && was !== "music" && wantMusicHint()) setTimeout(function () { if (!mode && wantMusicHint()) show("music"); }, 700);
+    }
     function finishIntro() { store(INTRO_KEY, "1"); }
 
     function show(m) {
@@ -692,6 +703,12 @@
         bubbleEl.appendChild(el("p", null, tt("hello")));
         actions.appendChild(button(tt("yes"), "agent-primary", function () { finishIntro(); go(0); }));
         actions.appendChild(button(tt("no"), "", function () { finishIntro(); hide(); }));
+      } else if (m === "music") {
+        musicHinted = true;
+        bubbleEl.setAttribute("aria-label", tt("open"));
+        bubbleEl.appendChild(el("p", null, tt("musicHint")));
+        actions.appendChild(button(tt("musicPlay"), "agent-primary", function () { hide(); if (window.EderMusic) window.EderMusic.play(); }));
+        actions.appendChild(button(tt("musicLater"), "", hide));
       } else if (m === "menu") {
         bubbleEl.appendChild(el("p", null, tt("menu")));
         actions.appendChild(button(tt("tour"), "agent-primary", function () { go(0); }));
@@ -739,6 +756,8 @@
     onLangChange(applyLang);
 
     if (!store(INTRO_KEY)) setTimeout(function () { if (!mode) show("intro"); }, 1200);
+    else if (wantMusicHint()) setTimeout(function () { if (!mode && wantMusicHint()) show("music"); }, 1500);
+    document.addEventListener("music:clicked", function () { if (mode === "music") hide(); });
   }
 
   initChat();
