@@ -58,6 +58,8 @@ The source of the agent lives in `.agentPessoalEder/` (the résumé as `profile.
 2. Run `python .agentPessoalEder/build_kb.py` (Python 3, no packages needed). It rewrites `assets/data/kb.json` and the Skills section of `index.html`, and warns about any skill that no job, project or certification backs up.
 3. Commit `assets/data/kb.json` and `index.html`.
 
+The Experience section is also generated from `profile.json`. With `"hide_company_names": true` in `person`, the site and the agent show each job's sector (`sector`) instead of employer and client names; set it to `false` to show the employer names again.
+
 Note: the browser has to download `assets/data/kb.json` and `assets/js/agent.js` to run the agent, so anyone can still read those two files. Only the source folder is private.
 
 Repositories are read live from GitHub, so a new push shows up without rebuilding. To link a new repository to a skill, give it that skill's id as a GitHub topic (for example `angular`), or add it as a project in `.agentPessoalEder/profile.json`.
