@@ -52,7 +52,7 @@
       tryAsking: "You can ask, for example:",
       askHim: "To be sure, ask him on LinkedIn: https://www.linkedin.com/in/eder-mendes-amaral/",
       yes: "Yes.",
-      usedAt: "He has used {s} professionally for {d}, at {c}.",
+      usedAt: "He has used {s} professionally for {d}, in: {c}.",
       usedAtShort: "He has used {s} professionally at {c} ({d}).",
       inProjects: "Projects with {s}:",
       onlyProjects: "Yes, in his own projects (not in a job yet):",
@@ -67,7 +67,7 @@
       projIntro: "Projects on his GitHub:",
       certIntro: "Certifications and courses:",
       source: "Source",
-      sources: { experience: "experience at", project: "project", certification: "certifications", education: "education", fact: "résumé" },
+      sources: { experience: "experience", project: "project", certification: "certifications", education: "education", fact: "résumé" },
       code: "Code",
       skillTitle: "{s}",
       skillJobs: "Where he used it",
@@ -90,7 +90,7 @@
       tryAsking: "Você pode perguntar, por exemplo:",
       askHim: "Para ter certeza, pergunte para ele no LinkedIn: https://www.linkedin.com/in/eder-mendes-amaral/",
       yes: "Sim.",
-      usedAt: "Ele usa {s} profissionalmente há {d}, na {c}.",
+      usedAt: "Ele usa {s} profissionalmente há {d}, em: {c}.",
       usedAtShort: "Ele usou {s} profissionalmente na {c} ({d}).",
       inProjects: "Projetos com {s}:",
       onlyProjects: "Sim, em projetos próprios (ainda não em um emprego):",
@@ -105,7 +105,7 @@
       projIntro: "Projetos no GitHub dele:",
       certIntro: "Certificações e cursos:",
       source: "Fonte",
-      sources: { experience: "experiência na", project: "projeto", certification: "certificações", education: "formação", fact: "currículo" },
+      sources: { experience: "experiência", project: "projeto", certification: "certificações", education: "formação", fact: "currículo" },
       code: "Código",
       skillTitle: "{s}",
       skillJobs: "Onde ele usou",
@@ -251,6 +251,7 @@
     catch (e) { return String(iso).slice(0, 10); }
   }
   function yearsOf(s) { return s.months < 12 ? 0 : Math.floor(s.months / 12); }
+  function period(e) { var a = e.start.slice(0, 4), b = e.end.slice(0, 4); return a === b ? a : a + "–" + b; }
   function skillName(s) { return lang() === "pt" ? s.name_pt : s.name; }
 
   // Projects and extra repositories for one skill, with live "updated" dates when GitHub answers.
@@ -282,7 +283,7 @@
   }
 
   function companies(kb, s) {
-    var names = s.experiences.map(function (id) { return kb.expById[id].company; });
+    var names = s.experiences.map(function (id) { var o = pick(kb.expById[id].org); return o.charAt(0).toLowerCase() + o.slice(1); });
     if (names.length < 2) return names.join("");
     return names.slice(0, -1).join(", ") + (lang() === "pt" ? " e " : " and ") + names[names.length - 1];
   }
@@ -342,7 +343,7 @@
       out.push(el("p", null, t("expIntro")));
       var ul = el("ul", "agent-links");
       kb.experiences.forEach(function (e) {
-        ul.appendChild(el("li", null, e.start.slice(0, 4) + "–" + e.end.slice(0, 4) + ": " + pick(e.role) + ", " + e.company));
+        ul.appendChild(el("li", null, period(e) + ": " + pick(e.role) + " · " + pick(e.org)));
       });
       out.push(ul);
     } else if (kind === "projects") {
@@ -359,7 +360,7 @@
 
   function sourceLabel(kb, d) {
     var s = t("sources")[d.kind] || "";
-    if (d.kind === "experience") s += " " + kb.expById[d.ref].company;
+    if (d.kind === "experience") s += " · " + pick(kb.expById[d.ref].org);
     if (d.kind === "project") s += " " + pick(kb.projById[d.ref].name);
     return t("source") + ": " + s;
   }
@@ -574,7 +575,7 @@
         var ul = el("ul", "agent-links");
         s.experiences.forEach(function (id) {
           var e = kb.expById[id];
-          ul.appendChild(el("li", null, e.start.slice(0, 4) + "–" + e.end.slice(0, 4) + ": " + pick(e.role) + ", " + e.company));
+          ul.appendChild(el("li", null, period(e) + ": " + pick(e.role) + " · " + pick(e.org)));
         });
         panel.appendChild(ul);
         var ex = evidence(kb, s);
@@ -638,8 +639,8 @@
   var STEPS = [
     { target: "#about", en: "This is Eder: a Computer Engineer and Full-Stack developer who has built .NET, C#, Angular and SQL Server systems since 2016, mostly for the public sector and regulated utilities.",
       pt: "Este é o Eder: Engenheiro de Computação e desenvolvedor Full-Stack que constrói sistemas com .NET, C#, Angular e SQL Server desde 2016, principalmente para o setor público e o setor elétrico." },
-    { target: "#experience", en: "His story: support analyst in 2015, developer from 2016 migrating legacy systems to ASP.NET Core, microservices for state agencies from 2019, and from 2022 critical ANEEL systems, including on-premise AI with RAG.",
-      pt: "A história dele: suporte técnico em 2015, desenvolvedor a partir de 2016 migrando sistemas legados para ASP.NET Core, microsserviços para órgãos do estado a partir de 2019 e, desde 2022, sistemas críticos da ANEEL, incluindo IA on-premise com RAG." },
+    { target: "#experience", en: "His story: support analyst in 2015, developer from 2016 migrating legacy systems to ASP.NET Core, microservices for state agencies from 2019, and from 2022 critical systems for a federal electricity regulator, including on-premise AI with RAG.",
+      pt: "A história dele: suporte técnico em 2015, desenvolvedor a partir de 2016 migrando sistemas legados para ASP.NET Core, microsserviços para órgãos do estado a partir de 2019 e, desde 2022, sistemas críticos de uma agência reguladora federal do setor elétrico, incluindo IA on-premise com RAG." },
     { target: "#projects", en: "Today he also builds AI and cloud projects. The featured one is a local RAG agent; below it are his latest repositories, straight from GitHub.",
       pt: "Hoje ele também constrói projetos de IA e cloud. O destaque é um agente RAG local; logo abaixo estão os repositórios mais recentes, direto do GitHub." },
     { target: "#skills", en: "Every skill here is clickable: it shows where he used it and the projects behind it. Try one after the tour.",
