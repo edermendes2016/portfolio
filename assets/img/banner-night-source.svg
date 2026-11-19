@@ -5,6 +5,7 @@
     <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd38a" stop-opacity=".55"/><stop offset="1" stop-color="#ffe2a8" stop-opacity="0"/></radialGradient>
     <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3a4a66" stop-opacity=".35"/><stop offset="1" stop-color="#3a4a66" stop-opacity="0"/></radialGradient>
     <radialGradient id="screen" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7f8cff" stop-opacity=".22"/><stop offset="1" stop-color="#7f8cff" stop-opacity="0"/></radialGradient>
+    <clipPath id="win"><rect x="1920" y="80" width="380" height="400" rx="6"/></clipPath>
   </defs>
   <rect width="2400" height="800" fill="url(#wall)"/>
   <!-- light from the window on the wall -->
@@ -14,22 +15,14 @@
   <rect y="684" width="2400" height="8" fill="#151a23"/>
   <!-- window -->
   <rect x="1920" y="80" width="380" height="400" rx="6" fill="url(#sky)"/>
-  <g opacity=".9">
-    <rect x="1940" y="380" width="26" height="100" fill="#26304a"/><rect x="1975" y="350" width="40" height="130" fill="#222b42"/>
-    <rect x="2030" y="400" width="30" height="80" fill="#28324c"/><rect x="2140" y="370" width="46" height="110" fill="#222b42"/>
-    <rect x="2200" y="410" width="30" height="70" fill="#26304a"/><rect x="2240" y="360" width="50" height="120" fill="#222b42"/>
-    <g fill="#f4c977" opacity=".75"><rect x="1983" y="368" width="6" height="8"/><rect x="1999" y="392" width="6" height="8"/><rect x="2150" y="390" width="6" height="8"/><rect x="2166" y="420" width="6" height="8"/><rect x="2252" y="380" width="6" height="8"/><rect x="2270" y="410" width="6" height="8"/><rect x="2038" y="420" width="6" height="8"/></g>
-  </g>
-  <g fill="#3b4559">
+  
+  <g clip-path="url(#win)"><circle cx="2190" cy="150" r="40" fill="#d9deea" opacity=".35"/><circle cx="2190" cy="150" r="80" fill="#9fb0d0" opacity=".08"/><g fill="#dfe6f5"><circle cx="1975" cy="330" r="2.5" opacity=".7"/><circle cx="2060" cy="250" r="2" opacity=".5"/><circle cx="2160" cy="300" r="2.5" opacity=".6"/><circle cx="2250" cy="380" r="2" opacity=".5"/><circle cx="2010" cy="420" r="2" opacity=".4"/><circle cx="2200" cy="260" r="1.8" opacity=".5"/></g><g fill="#3b4559">
     <ellipse cx="1990" cy="130" rx="110" ry="40"/><ellipse cx="2060" cy="110" rx="80" ry="45"/><ellipse cx="2120" cy="140" rx="100" ry="34"/>
     <ellipse cx="2230" cy="200" rx="110" ry="36"/><ellipse cx="2270" cy="180" rx="70" ry="38"/>
   </g>
-  <g fill="#4a556b" opacity=".8"><ellipse cx="2030" cy="120" rx="60" ry="22"/><ellipse cx="2250" cy="185" rx="45" ry="16"/></g>
-  <g stroke="#8fa3c6" stroke-width="3" opacity=".55" stroke-linecap="round">
-    <path d="M1960 175 l-8 26 M1995 190 l-8 26 M2035 168 l-8 26 M2075 200 l-8 26 M2140 180 l-8 26 M2180 240 l-8 26 M2225 250 l-8 26 M2265 235 l-8 26 M1965 300 l-8 26 M2010 330 l-8 26 M2060 300 l-8 26 M2150 320 l-8 26 M2205 300 l-8 26 M2280 320 l-8 26 M1990 250 l-8 26 M2110 250 l-8 26"/>
-  </g>
-  <g fill="#9fb4d8" opacity=".35"><circle cx="1960" cy="320" r="4"/><circle cx="2050" cy="250" r="3"/><circle cx="2160" cy="140" r="4"/><circle cx="2250" cy="300" r="3"/><circle cx="2080" cy="420" r="4"/></g>
-  <rect x="1920" y="80" width="380" height="400" rx="6" fill="none" stroke="#3a4356" stroke-width="16"/>
+  <g fill="#4a556b" opacity=".8"><ellipse cx="2030" cy="120" rx="60" ry="22"/><ellipse cx="2250" cy="185" rx="45" ry="16"/></g></g>
+  
+    <rect x="1920" y="80" width="380" height="400" rx="6" fill="none" stroke="#3a4356" stroke-width="16"/>
   <rect x="2102" y="80" width="16" height="400" fill="#3a4356"/>
   <rect x="1920" y="272" width="380" height="14" fill="#3a4356"/>
   <rect x="1900" y="478" width="420" height="16" rx="4" fill="#323a4b"/>
