@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-pt="Álibi: um jogo de detetive para testar .NET 11 e C# 15 de verdade | Eder Mendes Amaral">Álibi: a detective game to test .NET 11 and C# 15 for real | Eder Mendes Amaral</title>
-  <meta name="description" content="Interrogating suspects with AI, catching lies with an EF Core 11 FULL JOIN and finding evidence with vector search in SQL Server 2025.">
+  <title data-pt="Álibi: criei um jogo de detetive para aprender .NET 11 | Eder Mendes Amaral">Álibi: I built a detective game to learn .NET 11 | Eder Mendes Amaral</title>
+  <meta name="description" content="Questioning suspects with AI, catching lies with a FULL JOIN in EF Core 11 and finding evidence with vector search in SQL Server 2025.">
   <meta name="author" content="Eder Mendes Amaral">
   <link rel="canonical" href="https://edermendes2016.github.io/portfolio/blog/posts/alibi-detective-game-dotnet-11.html">
   <meta name="theme-color" content="#1f6feb">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Álibi: a detective game to test .NET 11 and C# 15 for real | Eder Mendes Amaral">
-  <meta property="og:description" content="Interrogating suspects with AI, catching lies with an EF Core 11 FULL JOIN and finding evidence with vector search in SQL Server 2025.">
+  <meta property="og:title" content="Álibi: I built a detective game to learn .NET 11 | Eder Mendes Amaral">
+  <meta property="og:description" content="Questioning suspects with AI, catching lies with a FULL JOIN in EF Core 11 and finding evidence with vector search in SQL Server 2025.">
   <meta property="og:url" content="https://edermendes2016.github.io/portfolio/blog/posts/alibi-detective-game-dotnet-11.html">
   <meta property="og:image" content="https://edermendes2016.github.io/portfolio/assets/img/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="../../assets/css/style.css">
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <meta property="article:published_time" content="2026-11-19">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Álibi: a detective game to test .NET 11 and C# 15 for real","datePublished":"2026-11-19","author":{"@type":"Person","name":"Eder Mendes Amaral","url":"https://edermendes2016.github.io/portfolio/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Álibi: I built a detective game to learn .NET 11","datePublished":"2026-11-19","author":{"@type":"Person","name":"Eder Mendes Amaral","url":"https://edermendes2016.github.io/portfolio/"}}</script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-pt="Pular para o conteúdo">Skip to content</a>
@@ -49,25 +49,27 @@
     <main id="main" class="article">
     <a class="back" href="../" data-pt="← Todos os posts">← All posts</a>
     <article>
-      <h1 data-pt="Álibi: um jogo de detetive para testar .NET 11 e C# 15 de verdade">Álibi: a detective game to test .NET 11 and C# 15 for real</h1>
+      <h1 data-pt="Álibi: criei um jogo de detetive para aprender .NET 11">Álibi: I built a detective game to learn .NET 11</h1>
       <div class="post-meta" data-pt="&lt;time datetime=&quot;2026-11-19&quot;&gt;19 nov 2026&lt;/time&gt; · 6 min de leitura"><time datetime="2026-11-19">Nov 19, 2026</time> · 6 min read</div>
 
-      <p data-pt="Ler as notas de lançamento ensina o que uma feature é. Construir algo com ela ensina onde ela encaixa e onde ela quebra. Então, para aprender .NET 11 e C# 15 de verdade, construí o &lt;strong&gt;Álibi&lt;/strong&gt;: um jogo de mistério em que você interroga suspeitos, compara as histórias deles com o que realmente aconteceu e aponta o culpado.">Reading release notes teaches you what a feature is. Building something with it teaches you where it fits and where it breaks. So, to really learn .NET 11 and C# 15, I built <strong>Álibi</strong>: a mystery game where you interrogate suspects, compare their stories with what actually happened, and name the culprit.</p>
+      <p data-pt="Eu queria aprender as novidades do .NET 11 e do C# 15, mas só ler as notas de lançamento não estava fixando. Então fiz o que costuma funcionar comigo: construí alguma coisa com elas. O resultado é o &lt;strong&gt;Álibi&lt;/strong&gt;, um joguinho de detetive. Você interroga os suspeitos, compara o que eles dizem com o que realmente aconteceu e aponta o culpado.">I wanted to learn what is new in .NET 11 and C# 15, but reading release notes was not sticking. So I did what usually works for me: I built something with it. The result is <strong>Álibi</strong>, a small detective game. You question the suspects, compare what they say with what really happened, and point at the culprit.</p>
 
-      <h2 data-pt="Como se joga">How it plays</h2>
-      <ul>
-        <li data-pt="&lt;strong&gt;Escolha um caso:&lt;/strong&gt; três estão prontos, do fácil ao difícil: &lt;em&gt;O Último Brinde&lt;/em&gt;, &lt;em&gt;A Última Cena&lt;/em&gt; e &lt;em&gt;Sinal Perdido&lt;/em&gt;, com quatro suspeitos cada."><strong>Pick a case:</strong> three are ready, from easy to hard: <em>The Last Toast</em>, <em>The Last Scene</em> and <em>Lost Signal</em>, with four suspects each.</li>
-        <li data-pt="&lt;strong&gt;Interrogue:&lt;/strong&gt; faça perguntas em texto livre. Algumas provas só aparecem quando você pergunta a coisa certa."><strong>Interrogate:</strong> ask questions in free text. Some evidence only shows up when you ask the right thing.</li>
-        <li data-pt="&lt;strong&gt;Cruze os dados:&lt;/strong&gt; compare cada álibi com a linha do tempo real do crime."><strong>Cross-check:</strong> compare each alibi with the real crime timeline.</li>
-        <li data-pt="&lt;strong&gt;Acuse:&lt;/strong&gt; o jogo diz se você resolveu, se o álibi se sustenta ou se ainda falta prova."><strong>Accuse:</strong> the game tells you whether you solved it, whether the alibi holds, or whether you still lack evidence.</li>
-      </ul>
-      <p data-pt="Por trás tem uma API ASP.NET Core em .NET 11, EF Core 11, SQL Server 2025 e uma interface web em JavaScript puro servida pela própria API, com a documentação da API no Scalar.">Behind it there is an ASP.NET Core API on .NET 11, EF Core 11, SQL Server 2025 and a plain JavaScript web UI served by the API itself, with the API documented in Scalar.</p>
-      <p data-pt="Para rodar, é só clonar o repositório e digitar &lt;code&gt;docker compose up&lt;/code&gt;: a API, a interface e o SQL Server sobem juntos, com os três casos já carregados. Sem precisar de chave de API.">To run it, clone the repository and type <code>docker compose up</code>: the API, the UI and SQL Server come up together, with the three cases already loaded. No API key needed.</p>
+      <h2 data-pt="O jogo">The game</h2>
+      <p data-pt="São três casos, do mais fácil ao mais difícil: &lt;em&gt;O Último Brinde&lt;/em&gt;, &lt;em&gt;A Última Cena&lt;/em&gt; e &lt;em&gt;Sinal Perdido&lt;/em&gt;. Cada um tem quatro suspeitos, e todo mundo jura que estava longe da cena do crime.">There are three cases, from easy to hard: <em>The Last Toast</em>, <em>The Last Scene</em> and <em>Lost Signal</em>. Each one has four suspects, and everyone swears they were far from the crime scene.</p>
+      <figure style="margin:1.5rem 0">
+        <img src="../../assets/img/blog/alibi-arquivo.jpg" width="1440" height="900" loading="lazy" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(127,127,127,.25)" alt="Case archive screen with the three cases">
+        <figcaption style="font-size:.9em;opacity:.75;margin-top:.5rem" data-pt="O arquivo de casos.">The case archive.</figcaption>
+      </figure>
+      <p data-pt="Você faz as perguntas do seu jeito. Algumas provas só aparecem quando um suspeito fala demais, então perguntar a coisa certa faz diferença. Quando acha que descobriu, você acusa alguém.">You ask questions in your own words. Some evidence only shows up when a suspect talks too much, so asking the right thing matters. When you think you have it, you accuse someone.</p>
+      <figure style="margin:1.5rem 0">
+        <img src="../../assets/img/blog/alibi-interrogatorio.jpg" width="1440" height="900" loading="lazy" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(127,127,127,.25)" alt="Interrogation screen: suspect list, declared alibi, chat and evidence">
+        <figcaption style="font-size:.9em;opacity:.75;margin-top:.5rem" data-pt="Interrogando uma suspeita. À direita, as provas encontradas até agora.">Questioning a suspect. The evidence collected so far is on the right.</figcaption>
+      </figure>
+      <p data-pt="Por baixo é uma API ASP.NET Core em .NET 11, com EF Core 11 e SQL Server 2025, e um front-end em JavaScript puro servido pela própria API. Para testar, basta clonar o repositório e rodar &lt;code&gt;docker compose up&lt;/code&gt;. Tudo sobe com os três casos carregados, e não precisa de nenhuma chave de API.">Under the hood it is an ASP.NET Core API on .NET 11, EF Core 11 and SQL Server 2025, with a plain JavaScript front end served by the API itself. To try it, clone the repository and run <code>docker compose up</code>. Everything comes up with the three cases loaded, and you do not need any API key.</p>
 
-      <h2 data-pt="Union types: cada resultado é um tipo">Union types: every outcome is a type</h2>
-      <p data-pt="Uma acusação pode terminar de quatro jeitos bem diferentes. Antes do C# 15 eu modelaria isso com um enum e campos anuláveis, ou com uma hierarquia de classes e um &lt;code&gt;default&lt;/code&gt; torcendo para nada ter ficado de fora. Com union types o conjunto de resultados é fechado e o compilador sabe disso:">An accusation can end in four very different ways. Before C# 15 I would model that with an enum plus nullable fields, or a class hierarchy and a <code>default</code> branch hoping nothing was forgotten. With union types the set of outcomes is closed and the compiler knows it:</p>
+      <h2 data-pt="Union types no resultado da acusação">Union types for the accusation result</h2>
+      <p data-pt="Uma acusação pode terminar de quatro jeitos: você resolveu, o álibi se sustenta, você achou uma contradição ou ainda falta prova. Em versões antigas do C# eu usaria um enum com alguns campos anuláveis e torceria para não esquecer nenhum caso. Com o C# 15 eu só declarei os resultados possíveis:">An accusation can end in four ways: you solved it, the alibi holds, you found a contradiction, or there is not enough evidence yet. In older C# I would use an enum with a few nullable fields and hope I did not forget a case. With C# 15 I just declared the possible results:</p>
 <pre><code>public union AccusationResult(CaseSolved, AlibiHolds, ContradictionFound, InsufficientEvidence);
-public union SuspectReply(ScriptedReply, AiReply, Stonewall);
 
 var message = result switch
 {
@@ -76,10 +78,10 @@ var message = result switch
     AlibiHolds a           =&gt; ...,
     InsufficientEvidence i =&gt; ...,
 };</code></pre>
-      <p data-pt="Não existe ramo &lt;code&gt;default&lt;/code&gt;. Se eu adicionar um quinto resultado amanhã, todo &lt;code&gt;switch&lt;/code&gt; que não tratar o caso novo para de compilar. É esse tipo de segurança que eu quero em regra de negócio, não só em jogo.">There is no <code>default</code> branch. If I add a fifth outcome tomorrow, every <code>switch</code> that does not handle it stops compiling. That is the kind of safety I want in business rules, not only in games.</p>
+      <p data-pt="Repare que não tem &lt;code&gt;default&lt;/code&gt;. Se eu criar um quinto resultado depois, o código para de compilar até eu tratar o caso novo em todo lugar. Gostei muito disso, e serve tanto para regra de negócio quanto para jogo.">Notice there is no <code>default</code>. If I add a fifth result later, the code stops compiling until I handle it everywhere. I liked this a lot, and it is just as useful for business rules as it is for a game.</p>
 
-      <h2 data-pt="FULL JOIN no EF Core 11: pegando mentiras com SQL">FULL JOIN in EF Core 11: catching lies with SQL</h2>
-      <p data-pt="O coração do jogo é comparar duas listas: a &lt;strong&gt;linha do tempo&lt;/strong&gt; (onde cada suspeito realmente estava) e os &lt;strong&gt;álibis&lt;/strong&gt; (onde eles dizem que estavam). Um inner join só mostra os momentos que aparecem dos dois lados, e é justamente aí que a parte interessante &lt;em&gt;não&lt;/em&gt; está. O novo operador &lt;code&gt;FullJoin&lt;/code&gt; do EF Core 11 mantém os dois lados e vira um &lt;code&gt;FULL JOIN&lt;/code&gt; de verdade no SQL:">The heart of the game is comparing two lists: the <strong>timeline</strong> (where each suspect really was) and the <strong>alibis</strong> (where they say they were). An inner join only shows the moments that appear on both sides, and that is exactly where the interesting stuff is <em>not</em>. The new <code>FullJoin</code> operator in EF Core 11 keeps both sides and is translated to a real SQL <code>FULL JOIN</code>:</p>
+      <h2 data-pt="Pegando mentiras com FULL JOIN">Catching lies with a FULL JOIN</h2>
+      <p data-pt="Essa é a minha parte favorita. O jogo guarda duas listas: onde cada suspeito realmente estava (a linha do tempo) e onde ele diz que estava (o álibi). Para achar as mentiras, você precisa ver tudo dos dois lados, inclusive o que só aparece em um deles. O EF Core 11 agora tem o &lt;code&gt;FullJoin&lt;/code&gt;, que vira um &lt;code&gt;FULL JOIN&lt;/code&gt; de verdade no SQL:">This is my favourite part. The game keeps two lists: where each suspect really was (the timeline) and where they say they were (the alibi). To find the lies you need to see everything from both sides, including what shows up on only one of them. EF Core 11 now has <code>FullJoin</code>, which becomes a real <code>FULL JOIN</code> in SQL:</p>
 <pre><code>truth.FullJoin(
     claims,
     t =&gt; new { t.SuspectId, t.Time },
@@ -89,33 +91,25 @@ var message = result switch
         RealLocation    = t != null ? t.Location : null,
         ClaimedLocation = a != null ? a.ClaimedLocation : null
     });</code></pre>
-      <p data-pt="Cada linha cai em um de três casos, e cada um é uma pista:">Each row falls into one of three cases, and each one is a clue:</p>
-      <ul>
-        <li data-pt="&lt;strong&gt;Os dois lados, lugares diferentes:&lt;/strong&gt; mentira."><strong>Both sides, different places:</strong> a lie.</li>
-        <li data-pt="&lt;strong&gt;Só a linha do tempo:&lt;/strong&gt; omissão. O suspeito pulou aquele momento."><strong>Only the timeline:</strong> an omission. The suspect skipped that moment.</li>
-        <li data-pt="&lt;strong&gt;Só o álibi:&lt;/strong&gt; invenção. Algo que nunca aconteceu."><strong>Only the alibi:</strong> an invention. Something that never happened.</li>
-      </ul>
-      <p data-pt="Antes isso pedia left join, right join e union, ou SQL na mão. Agora é uma consulta LINQ legível.">Before, this needed a left join, a right join and a union, or raw SQL. Now it is one readable LINQ query.</p>
+      <p data-pt="Se os dois lados existem mas os lugares são diferentes, é mentira. Se só a linha do tempo tem o registro, o suspeito omitiu aquele momento. Se só o álibi tem, ele inventou. Antes eu precisaria de left join, right join e union, ou de SQL escrito na mão.">If both sides exist but the places differ, it is a lie. If only the timeline has the row, the suspect left that moment out. If only the alibi has it, they made it up. Before, I would have needed a left join, a right join and a union, or hand-written SQL.</p>
+      <figure style="margin:1.5rem 0">
+        <img src="../../assets/img/blog/alibi-caso-resolvido.jpg" width="1440" height="900" loading="lazy" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(127,127,127,.25)" alt="Case closed screen with the timeline versus alibis table">
+        <figcaption style="font-size:.9em;opacity:.75;margin-top:.5rem" data-pt="Quando o caso é encerrado, o jogo mostra o resultado desse FULL JOIN, com cada mentira marcada.">When the case is closed, the game shows the result of that FULL JOIN, with every lie marked.</figcaption>
+      </figure>
 
-      <h2 data-pt="Busca vetorial no SQL Server 2025">Vector search in SQL Server 2025</h2>
-      <p data-pt="O jogador não digita as palavras exatas do roteiro, então achar a resposta e a prova certas é um problema de busca semântica. As falas e pistas têm uma coluna &lt;code&gt;vector(256)&lt;/code&gt; no SQL Server 2025, com índice DiskANN configurado pelo EF Core:">Players do not type the exact words of the script, so finding the right answer and the right evidence is a semantic search problem. The lines and clues have a <code>vector(256)</code> column in SQL Server 2025, with a DiskANN index configured from EF Core:</p>
-<pre><code>entity.HasVectorIndex(x =&gt; x.Embedding)
-      .HasMetric("cosine");</code></pre>
-      <p data-pt="Uma observação honesta: o &lt;code&gt;VectorSearch()&lt;/code&gt; experimental do EF Core 11 gera &lt;code&gt;TOP(n) WITH APPROXIMATE&lt;/code&gt;, que a versão do SQL Server 2025 no meu container ainda não aceita. Então o código tenta a busca aproximada primeiro e cai automaticamente para uma busca exata com &lt;code&gt;EF.Functions.VectorDistance(&quot;cosine&quot;, ...)&lt;/code&gt;. Para algumas centenas de falas por caso a diferença não importa, e o jogo nunca quebra por causa de uma feature em preview.">An honest note: the experimental <code>VectorSearch()</code> in EF Core 11 generates <code>TOP(n) WITH APPROXIMATE</code>, which the SQL Server 2025 build in my container does not accept yet. So the code tries the approximate search first and automatically falls back to an exact search with <code>EF.Functions.VectorDistance("cosine", ...)</code>. For a few hundred lines per case the difference does not matter, and the game never breaks because of a preview feature.</p>
-      <p data-pt="Os embeddings são gerados offline e de forma determinística (feature hashing), então o jogo não precisa de chave de API para funcionar e a mesma pergunta sempre encontra a mesma prova.">The embeddings are generated offline and deterministically (feature hashing), so the game needs no API key to work and the same question always finds the same evidence.</p>
+      <h2 data-pt="Busca vetorial para achar as provas">Vector search to find the evidence</h2>
+      <p data-pt="Ninguém digita as palavras exatas do roteiro, então achar a resposta certa é uma busca por significado. As falas dos suspeitos e as pistas têm uma coluna &lt;code&gt;vector(256)&lt;/code&gt; no SQL Server 2025, com um índice DiskANN configurado pelo EF Core.">Nobody types the exact words of the script, so finding the right answer is a search by meaning. The suspects' lines and the clues have a <code>vector(256)</code> column in SQL Server 2025, with a DiskANN index set up from EF Core.</p>
+      <p data-pt="Nem tudo funcionou de primeira. A busca aproximada do EF Core 11 ainda é experimental e gera um SQL que a versão do SQL Server do meu container ainda não aceita. Então o código tenta primeiro e, se falhar, cai para uma busca exata com &lt;code&gt;VectorDistance&lt;/code&gt;. Com algumas centenas de falas por caso, não dá para perceber a diferença, e o jogo continua funcionando.">Not everything worked on the first try. The approximate search in EF Core 11 is still experimental and generates SQL that the SQL Server version in my container does not accept yet. So the code tries it first and, if it fails, falls back to an exact search with <code>VectorDistance</code>. With a few hundred lines per case you do not notice the difference, and the game keeps working.</p>
+      <p data-pt="Os embeddings são gerados offline e sempre do mesmo jeito, então a mesma pergunta sempre encontra a mesma prova.">The embeddings are generated offline, always the same way, so the same question always finds the same evidence.</p>
 
-      <h2 data-pt="Onde entra a IA (e onde ela não entra)">Where the AI comes in (and where it does not)</h2>
-      <p data-pt="Com uma &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt;, os suspeitos respondem com o Claude, pelo SDK oficial da Anthropic para C# plugado como &lt;code&gt;IChatClient&lt;/code&gt; do &lt;code&gt;Microsoft.Extensions.AI&lt;/code&gt;. Sem chave, eles respondem com as falas roteirizadas mais próximas da sua pergunta. Trocar de provedor é uma mudança de configuração, não uma reescrita.">With an <code>ANTHROPIC_API_KEY</code>, suspects answer with Claude, through the official Anthropic C# SDK plugged in as an <code>IChatClient</code> from <code>Microsoft.Extensions.AI</code>. Without a key, they answer with the scripted lines closest to your question. Swapping providers is a configuration change, not a rewrite.</p>
-      <p data-pt="A decisão de design mais importante: &lt;strong&gt;a IA nunca decide qual prova você destrava&lt;/strong&gt;. Isso é sempre a busca vetorial sobre os dados do caso. O modelo dá voz ao suspeito; o banco guarda os fatos. Assim o caso continua justo, solucionável e testável.">The most important design decision: <strong>the AI never decides which evidence you unlock</strong>. That is always the vector search over the case data. The model gives the suspect a voice; the database keeps the facts. That way the case stays fair and solvable, and testable.</p>
+      <h2 data-pt="E a IA?">And the AI?</h2>
+      <p data-pt="Se você configurar uma &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt;, os suspeitos respondem com o Claude, pelo SDK oficial de C# ligado como &lt;code&gt;IChatClient&lt;/code&gt;. Sem chave, eles respondem com a fala do roteiro mais parecida com a sua pergunta. Trocar entre os dois é só configuração.">If you set an <code>ANTHROPIC_API_KEY</code>, the suspects answer with Claude, through the official C# SDK plugged in as an <code>IChatClient</code>. Without a key, they answer with the scripted line closest to your question. Switching between the two is just configuration.</p>
+      <p data-pt="Uma decisão que tomei logo no começo: a IA nunca decide qual prova você ganha. Isso é sempre a busca vetorial nos dados do caso. O modelo dá voz ao suspeito, e o banco guarda os fatos. Assim todo caso continua justo, sempre tem solução e é fácil de testar.">One decision I made early on: the AI never decides which evidence you get. That is always the vector search over the case data. The model gives the suspect a voice, and the database keeps the facts. That way every case stays fair, can always be solved, and is easy to test.</p>
 
-      <blockquote data-pt="Lição: use o LLM no que ele é bom, linguagem, e mantenha as regras do sistema em código determinístico que você consegue testar.">Lesson: use the LLM for what it is good at, language, and keep the rules of the system in deterministic code you can test.</blockquote>
+      <blockquote data-pt="O que eu levo daqui: deixe o modelo de linguagem cuidar da linguagem e mantenha as regras em código que dá para testar.">What I am taking with me: let the language model handle language, and keep the rules in code you can test.</blockquote>
 
-      <h2 data-pt="Próximos passos">Next steps</h2>
-      <ul>
-        <li data-pt="Trocar para a busca vetorial aproximada assim que a imagem do SQL Server suportar.">Switch to the approximate vector search as soon as the SQL Server image supports it.</li>
-        <li data-pt="Escrever mais casos e, quem sabe, deixar os jogadores criarem os seus.">Write more cases, and maybe let players create their own.</li>
-      </ul>
-      <p data-pt="O código está no &lt;a href=&quot;https://github.com/edermendes2016/API.NET-11&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;, com mais detalhes na wiki.">The code is on <a href="https://github.com/edermendes2016/API.NET-11" target="_blank" rel="noopener">GitHub</a>, with more details in the wiki.</p>
+      <h2 data-pt="O que vem agora">What is next</h2>
+      <p data-pt="Quero trocar para a busca vetorial aproximada assim que o SQL Server suportar, escrever mais alguns casos e, quem sabe, deixar os jogadores criarem os seus. O código está no &lt;a href=&quot;https://github.com/edermendes2016/API.NET-11&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;, e a wiki tem mais detalhes de como tudo se encaixa.">I want to switch to the approximate vector search as soon as SQL Server supports it, write a few more cases, and maybe let players create their own. The code is on <a href="https://github.com/edermendes2016/API.NET-11" target="_blank" rel="noopener">GitHub</a>, and the wiki has more details on how it all fits together.</p>
     </article>
   </main>
   <footer class="site-footer">
