@@ -62,6 +62,7 @@
         <li data-pt="&lt;strong&gt;Acuse:&lt;/strong&gt; o jogo diz se você resolveu, se o álibi se sustenta ou se ainda falta prova."><strong>Accuse:</strong> the game tells you whether you solved it, whether the alibi holds, or whether you still lack evidence.</li>
       </ul>
       <p data-pt="Por trás tem uma API ASP.NET Core em .NET 11, EF Core 11, SQL Server 2025 e uma interface web em JavaScript puro servida pela própria API, com a documentação da API no Scalar.">Behind it there is an ASP.NET Core API on .NET 11, EF Core 11, SQL Server 2025 and a plain JavaScript web UI served by the API itself, with the API documented in Scalar.</p>
+      <p data-pt="Para rodar, é só clonar o repositório e digitar &lt;code&gt;docker compose up&lt;/code&gt;: a API, a interface e o SQL Server sobem juntos, com os três casos já carregados. Sem precisar de chave de API.">To run it, clone the repository and type <code>docker compose up</code>: the API, the UI and SQL Server come up together, with the three cases already loaded. No API key needed.</p>
 
       <h2 data-pt="Union types: cada resultado é um tipo">Union types: every outcome is a type</h2>
       <p data-pt="Uma acusação pode terminar de quatro jeitos bem diferentes. Antes do C# 15 eu modelaria isso com um enum e campos anuláveis, ou com uma hierarquia de classes e um &lt;code&gt;default&lt;/code&gt; torcendo para nada ter ficado de fora. Com union types o conjunto de resultados é fechado e o compilador sabe disso:">An accusation can end in four very different ways. Before C# 15 I would model that with an enum plus nullable fields, or a class hierarchy and a <code>default</code> branch hoping nothing was forgotten. With union types the set of outcomes is closed and the compiler knows it:</p>
@@ -111,7 +112,6 @@ var message = result switch
 
       <h2 data-pt="Próximos passos">Next steps</h2>
       <ul>
-        <li data-pt="Terminar o &lt;code&gt;docker compose&lt;/code&gt; para a API, a interface e o SQL Server subirem com um único comando.">Finish the <code>docker compose</code> setup so the API, the UI and SQL Server come up with one command.</li>
         <li data-pt="Trocar para a busca vetorial aproximada assim que a imagem do SQL Server suportar.">Switch to the approximate vector search as soon as the SQL Server image supports it.</li>
         <li data-pt="Escrever mais casos e, quem sabe, deixar os jogadores criarem os seus.">Write more cases, and maybe let players create their own.</li>
       </ul>
