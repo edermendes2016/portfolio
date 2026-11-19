@@ -129,6 +129,7 @@
       <section id="news" class="section">
         <h2 class="section-title" data-pt="Novidades">Recent</h2>
         <ul class="news">
+          <li><time datetime="2026-11">Nov 2026</time><span data-pt="Publiquei o &lt;a href=&quot;#projects&quot;&gt;Álibi&lt;/a&gt;, um jogo de detetive em .NET 11 com union types do C# 15, FULL JOIN no EF Core 11 e busca vetorial no SQL Server 2025.">Published <a href="#projects">Álibi</a>, a detective game on .NET 11 with C# 15 union types, EF Core 11 FULL JOIN and vector search on SQL Server 2025.</span></li>
           <li><time datetime="2026-11">Nov 2026</time><span data-pt="Lancei este site e o &lt;a href=&quot;blog/&quot;&gt;blog de estudos&lt;/a&gt;.">Launched this site and the <a href="blog/">study blog</a>.</span></li>
           <li><time datetime="2026-11">Nov 2026</time><span data-pt="Publiquei o projeto &lt;a href=&quot;#projects&quot;&gt;Agente RAG Local&lt;/a&gt; no GitHub.">Published the <a href="#projects">Local RAG Agent</a> project on GitHub.</span></li>
           <li><time datetime="2026">2026</time><span data-pt="Cursando o &lt;strong&gt;AWS re/Start Cloud Foundations&lt;/strong&gt; (300 horas, presencial).">Taking <strong>AWS re/Start Cloud Foundations</strong> (300 hours, in person).</span></li>
@@ -136,7 +137,24 @@
       </section>
 
       <section id="projects" class="section">
-        <h2 class="section-title" data-pt="Projeto em destaque">Featured project</h2>
+        <h2 class="section-title" data-pt="Projetos em destaque">Featured projects</h2>
+        <article class="card project">
+          <img class="project-thumb" src="assets/img/alibi-thumb.jpg" alt="Álibi game screen: suspect interrogation, evidence board and the suspect list" width="320" height="200" loading="lazy">
+          <div>
+            <h3 data-pt="Álibi: jogo de investigação em .NET 11">Álibi: a detective game on .NET 11</h3>
+            <p data-pt="Um mistério no estilo Detetive: cada suspeito declarou um álibi e a verdade está no SQL Server. O jogador interroga os suspeitos, coleta provas e cruza depoimentos até achar a contradição no horário do crime. Roda com um único docker compose up, com 3 casos prontos.">A Clue-style mystery: every suspect declared an alibi and the truth lives in SQL Server. The player interrogates suspects, collects evidence and cross-checks statements until the lie at the time of the crime shows up. Runs with a single docker compose up, with 3 ready-to-play cases.</p>
+            <ul class="tags">
+              <li>.NET 11</li><li>C# 15</li><li>EF Core 11</li><li>SQL Server 2025</li><li>Docker</li><li>Claude</li>
+            </ul>
+            <p data-pt="O resultado da acusação é uma union do C# 15; a linha do tempo real é cruzada com os álibis por um FullJoin do EF Core 11; as falas dos suspeitos são buscadas por similaridade numa coluna VECTOR. O interrogatório pode usar IA (Claude) e tem modo offline, sem chave.">The accusation result is a C# 15 union; the real timeline is crossed with the alibis by an EF Core 11 FullJoin; suspect statements are matched by similarity in a VECTOR column. Interrogation can use AI (Claude) and has an offline mode that needs no key.</p>
+            <div class="links">
+              <a class="btn" href="https://github.com/edermendes2016/API.NET-11" target="_blank" rel="noopener" data-pt="Código">Code</a>
+              <a class="btn" href="https://github.com/edermendes2016/API.NET-11/wiki" target="_blank" rel="noopener" data-pt="Documentação">Docs</a>
+              <a class="btn" href="blog/posts/alibi-detective-game-dotnet-11.html" data-pt="Artigo">Write-up</a>
+            </div>
+          </div>
+        </article>
+
         <article class="card project">
           <img class="project-thumb" src="assets/img/rag-agent-thumb.svg" alt="Diagram of the local RAG agent: code repository, ChromaDB and Ollama" width="320" height="200" loading="lazy">
           <div>
