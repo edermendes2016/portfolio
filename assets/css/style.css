@@ -85,23 +85,42 @@ pre code { background: none; padding: 0; color: inherit; }
 :root[data-theme="dark"] .theme-toggle .moon { display: block; }
 .menu-toggle { display: none; }
 
-/* ===== Banner (hero with dark overlay) ===== */
+/* ===== Banner (hero) =====
+   A light home-office illustration. Its left side is an empty wall, so the
+   text sits there; a soft fade keeps it readable on narrow screens. */
+:root {
+  --hero-text: #2f3437; --hero-sub: #4b5257;
+  --hero-fade: linear-gradient(90deg, rgba(248,245,240,.92) 0%, rgba(248,245,240,.75) 38%, rgba(248,245,240,0) 62%);
+}
+:root[data-theme="dark"] {
+  --hero-text: #ffffff; --hero-sub: #eef0f2;
+  --hero-fade: linear-gradient(90deg, rgba(22,26,34,.85) 0%, rgba(22,26,34,.65) 45%, rgba(22,26,34,.45) 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --hero-text: #ffffff; --hero-sub: #eef0f2;
+    --hero-fade: linear-gradient(90deg, rgba(22,26,34,.85) 0%, rgba(22,26,34,.65) 45%, rgba(22,26,34,.45) 100%);
+    }
+}
 .hero {
-  position: relative; color: #fff; padding: 3.5rem 0;
-  background-color: #1a3d6b;
-  background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("../img/banner.jpg");
-  background-size: cover; background-position: center; background-repeat: no-repeat;
+  position: relative; color: var(--hero-sub); padding: 4.5rem 0;
+  background-color: #f4efe8;
+  background-image: var(--hero-fade), url("../img/banner.jpg");
+  background-size: cover; background-position: center right; background-repeat: no-repeat;
+  border-bottom: 1px solid var(--rule);
   animation: intro .3s both .25s;
 }
 @media (max-width: 900px) {
-  .hero { background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("../img/banner-1200.jpg"); }
+  /* Narrow screens: text on the plain wall colour, the scene shown below it. */
+  .hero { padding-bottom: 250px; background-image: url("../img/banner-1200.jpg"); background-size: auto 240px; background-position: right -40px bottom; }
+  :root[data-theme="dark"] .hero { background-image: linear-gradient(rgba(22,26,34,.92), rgba(22,26,34,.92)), url("../img/banner-1200.jpg"); background-size: 100% calc(100% - 240px), auto 240px; background-position: top, right -40px bottom; }
 }
 .hero-inner { max-width: var(--wrap); margin: 0 auto; padding: 0 1rem; }
-.hero-title { color: #fff; font-size: 2.441rem; line-height: 1.1; margin: 0 0 .75rem; text-shadow: 1px 1px 4px rgba(0,0,0,.5); }
-.hero-lead { max-width: 768px; font-size: 1.25rem; line-height: 1.5; margin: 0 0 1.25rem; text-shadow: 1px 1px 4px rgba(0,0,0,.5); }
+.hero-title { color: var(--hero-text); font-size: 2.441rem; line-height: 1.1; margin: 0 0 .75rem; }
+.hero-lead { max-width: 580px; font-size: 1.25rem; line-height: 1.5; margin: 0 0 1.25rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0; }
-.hero .btn-light { color: #fff; background: transparent; border: 1px solid #fff; text-shadow: none; }
-.hero .btn-light:hover { color: #222; background: #fff; border-color: #fff; text-decoration: none; }
+.hero .btn-light { color: var(--hero-text); background: transparent; border: 1px solid currentColor; }
+.hero .btn-light:hover { color: var(--bg); background: var(--hero-text); border-color: var(--hero-text); text-decoration: none; }
 
 /* ===== Layout ===== */
 .layout { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 2rem 1rem 3rem; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2.5rem; flex: 1; }
@@ -212,7 +231,7 @@ main { min-width: 0; animation: intro .3s both .35s; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: .6rem 0; }
   .nav-links a::before { display: none; }
-  .hero { padding: 2.25rem 0; }
+  .hero { padding: 2.25rem 0 250px; }
   .hero-title { font-size: 1.953rem; }
   .hero-lead { font-size: 1.05rem; }
   .news li { grid-template-columns: 1fr; gap: 0; }
