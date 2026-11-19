@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-pt="Álibi: criei um jogo de detetive para aprender .NET 11 | Eder Mendes Amaral">Álibi: I built a detective game to learn .NET 11 | Eder Mendes Amaral</title>
+  <meta name="description" content="Questioning suspects with AI, catching lies with a FULL JOIN in EF Core 11 and finding evidence with vector search in SQL Server 2025.">
+  <meta name="author" content="Eder Mendes Amaral">
+  <link rel="canonical" href="https://edermendes2016.github.io/portfolio/blog/posts/alibi-detective-game-dotnet-11.html">
+  <meta name="theme-color" content="#1f6feb">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Álibi: I built a detective game to learn .NET 11 | Eder Mendes Amaral">
+  <meta property="og:description" content="Questioning suspects with AI, catching lies with a FULL JOIN in EF Core 11 and finding evidence with vector search in SQL Server 2025.">
+  <meta property="og:url" content="https://edermendes2016.github.io/portfolio/blog/posts/alibi-detective-game-dotnet-11.html">
+  <meta property="og:image" content="https://edermendes2016.github.io/portfolio/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://edermendes2016.github.io/portfolio/assets/img/og-image.png">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <meta property="article:published_time" content="2026-11-19">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Álibi: I built a detective game to learn .NET 11","datePublished":"2026-11-19","author":{"@type":"Person","name":"Eder Mendes Amaral","url":"https://edermendes2016.github.io/portfolio/"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-pt="Pular para o conteúdo">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="../../">Eder Mendes Amaral</a>
+      <ul class="nav-links">
+        <li><a href="../../#about" data-pt="Sobre">About</a></li>
+        <li><a href="../../#projects" data-pt="Projetos">Projects</a></li>
+        <li><a href="../../#experience" data-pt="Experiência">Experience</a></li>
+        <li><a href="../../#skills" data-pt="Habilidades">Skills</a></li>
+        <li><a href="../../blog/" aria-current="page">Blog</a></li>
+      </ul>
+      <button class="icon-btn lang-toggle" type="button" lang="pt-BR" aria-label="Ver em português" title="Ver em português">PT</button>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </nav>
+  </header>
+    <main id="main" class="article">
+    <a class="back" href="../" data-pt="← Todos os posts">← All posts</a>
+    <article>
+      <h1 data-pt="Álibi: criei um jogo de detetive para aprender .NET 11">Álibi: I built a detective game to learn .NET 11</h1>
+      <div class="post-meta" data-pt="&lt;time datetime=&quot;2026-11-19&quot;&gt;19 nov 2026&lt;/time&gt; · 6 min de leitura"><time datetime="2026-11-19">Nov 19, 2026</time> · 6 min read</div>
+
+      <p data-pt="Eu queria aprender as novidades do .NET 11 e do C# 15, mas só ler as notas de lançamento não estava fixando. Então fiz o que costuma funcionar comigo: construí alguma coisa com elas. O resultado é o &lt;strong&gt;Álibi&lt;/strong&gt;, um joguinho de detetive. Você interroga os suspeitos, compara o que eles dizem com o que realmente aconteceu e aponta o culpado.">I wanted to learn what is new in .NET 11 and C# 15, but reading release notes was not sticking. So I did what usually works for me: I built something with it. The result is <strong>Álibi</strong>, a small detective game. You question the suspects, compare what they say with what really happened, and point at the culprit.</p>
+
+      <h2 data-pt="O jogo">The game</h2>
+      <p data-pt="São três casos, do mais fácil ao mais difícil: &lt;em&gt;O Último Brinde&lt;/em&gt;, &lt;em&gt;A Última Cena&lt;/em&gt; e &lt;em&gt;Sinal Perdido&lt;/em&gt;. Cada um tem quatro suspeitos, e todo mundo jura que estava longe da cena do crime.">There are three cases, from easy to hard: <em>The Last Toast</em>, <em>The Last Scene</em> and <em>Lost Signal</em>. Each one has four suspects, and everyone swears they were far from the crime scene.</p>
+      <figure style="margin:1.5rem 0">
+        <img src="../../assets/img/blog/alibi-arquivo.jpg" width="1440" height="900" loading="lazy" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(127,127,127,.25)" alt="Case archive screen with the three cases">
+        <figcaption style="font-size:.9em;opacity:.75;margin-top:.5rem" data-pt="O arquivo de casos.">The case archive.</figcaption>
+      </figure>
+      <p data-pt="Você faz as perguntas do seu jeito. Algumas provas só aparecem quando um suspeito fala demais, então perguntar a coisa certa faz diferença. Quando acha que descobriu, você acusa alguém.">You ask questions in your own words. Some evidence only shows up when a suspect talks too much, so asking the right thing matters. When you think you have it, you accuse someone.</p>
+      <figure style="margin:1.5rem 0">
+        <img src="../../assets/img/blog/alibi-interrogatorio.jpg" width="1440" height="900" loading="lazy" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(127,127,127,.25)" alt="Interrogation screen: suspect list, declared alibi, chat and evidence">
+        <figcaption style="font-size:.9em;opacity:.75;margin-top:.5rem" data-pt="Interrogando uma suspeita. À direita, as provas encontradas até agora.">Questioning a suspect. The evidence collected so far is on the right.</figcaption>
+      </figure>
+      <p data-pt="Por baixo é uma API ASP.NET Core em .NET 11, com EF Core 11 e SQL Server 2025, e um front-end em JavaScript puro servido pela própria API. Para testar, basta clonar o repositório e rodar &lt;code&gt;docker compose up&lt;/code&gt;. Tudo sobe com os três casos carregados, e não precisa de nenhuma chave de API.">Under the hood it is an ASP.NET Core API on .NET 11, EF Core 11 and SQL Server 2025, with a plain JavaScript front end served by the API itself. To try it, clone the repository and run <code>docker compose up</code>. Everything comes up with the three cases loaded, and you do not need any API key.</p>
+
+      <h2 data-pt="Union types no resultado da acusação">Union types for the accusation result</h2>
+      <p data-pt="Uma acusação pode terminar de quatro jeitos: você resolveu, o álibi se sustenta, você achou uma contradição ou ainda falta prova. Em versões antigas do C# eu usaria um enum com alguns campos anuláveis e torceria para não esquecer nenhum caso. Com o C# 15 eu só declarei os resultados possíveis:">An accusation can end in four ways: you solved it, the alibi holds, you found a contradiction, or there is not enough evidence yet. In older C# I would use an enum with a few nullable fields and hope I did not forget a case. With C# 15 I just declared the possible results:</p>
+<pre><code>public union AccusationResult(CaseSolved, AlibiHolds, ContradictionFound, InsufficientEvidence);
+
+var message = result switch
+{
+    CaseSolved s           =&gt; ...,
+    ContradictionFound x   =&gt; ...,
+    AlibiHolds a           =&gt; ...,
+    InsufficientEvidence i =&gt; ...,
+};</code></pre>
+      <p data-pt="Repare que não tem &lt;code&gt;default&lt;/code&gt;. Se eu criar um quinto resultado depois, o código para de compilar até eu tratar o caso novo em todo lugar. Gostei muito disso, e serve tanto para regra de negócio quanto para jogo.">Notice there is no <code>default</code>. If I add a fifth result later, the code stops compiling until I handle it everywhere. I liked this a lot, and it is just as useful for business rules as it is for a game.</p>
+
+      <h2 data-pt="Pegando mentiras com FULL JOIN">Catching lies with a FULL JOIN</h2>
+      <p data-pt="Essa é a minha parte favorita. O jogo guarda duas listas: onde cada suspeito realmente estava (a linha do tempo) e onde ele diz que estava (o álibi). Para achar as mentiras, você precisa ver tudo dos dois lados, inclusive o que só aparece em um deles. O EF Core 11 agora tem o &lt;code&gt;FullJoin&lt;/code&gt;, que vira um &lt;code&gt;FULL JOIN&lt;/code&gt; de verdade no SQL:">This is my favourite part. The game keeps two lists: where each suspect really was (the timeline) and where they say they were (the alibi). To find the lies you need to see everything from both sides, including what shows up on only one of them. EF Core 11 now has <code>FullJoin</code>, which becomes a real <code>FULL JOIN</code> in SQL:</p>
+<pre><code>truth.FullJoin(
+    claims,
+    t =&gt; new { t.SuspectId, t.Time },
+    a =&gt; new { a.SuspectId, a.Time },
+    (t, a) =&gt; new CrossCheckProjection
+    {
+        RealLocation    = t != null ? t.Location : null,
+        ClaimedLocation = a != null ? a.ClaimedLocation : null
+    });</code></pre>
+      <p data-pt="Se os dois lados existem mas os lugares são diferentes, é mentira. Se só a linha do tempo tem o registro, o suspeito omitiu aquele momento. Se só o álibi tem, ele inventou. Antes eu precisaria de left join, right join e union, ou de SQL escrito na mão.">If both sides exist but the places differ, it is a lie. If only the timeline has the row, the suspect left that moment out. If only the alibi has it, they made it up. Before, I would have needed a left join, a right join and a union, or hand-written SQL.</p>
+      <figure style="margin:1.5rem 0">
+        <img src="../../assets/img/blog/alibi-caso-resolvido.jpg" width="1440" height="900" loading="lazy" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(127,127,127,.25)" alt="Case closed screen with the timeline versus alibis table">
+        <figcaption style="font-size:.9em;opacity:.75;margin-top:.5rem" data-pt="Quando o caso é encerrado, o jogo mostra o resultado desse FULL JOIN, com cada mentira marcada.">When the case is closed, the game shows the result of that FULL JOIN, with every lie marked.</figcaption>
+      </figure>
+
+      <h2 data-pt="Busca vetorial para achar as provas">Vector search to find the evidence</h2>
+      <p data-pt="Ninguém digita as palavras exatas do roteiro, então achar a resposta certa é uma busca por significado. As falas dos suspeitos e as pistas têm uma coluna &lt;code&gt;vector(256)&lt;/code&gt; no SQL Server 2025, com um índice DiskANN configurado pelo EF Core.">Nobody types the exact words of the script, so finding the right answer is a search by meaning. The suspects' lines and the clues have a <code>vector(256)</code> column in SQL Server 2025, with a DiskANN index set up from EF Core.</p>
+      <p data-pt="Nem tudo funcionou de primeira. A busca aproximada do EF Core 11 ainda é experimental e gera um SQL que a versão do SQL Server do meu container ainda não aceita. Então o código tenta primeiro e, se falhar, cai para uma busca exata com &lt;code&gt;VectorDistance&lt;/code&gt;. Com algumas centenas de falas por caso, não dá para perceber a diferença, e o jogo continua funcionando.">Not everything worked on the first try. The approximate search in EF Core 11 is still experimental and generates SQL that the SQL Server version in my container does not accept yet. So the code tries it first and, if it fails, falls back to an exact search with <code>VectorDistance</code>. With a few hundred lines per case you do not notice the difference, and the game keeps working.</p>
+      <p data-pt="Os embeddings são gerados offline e sempre do mesmo jeito, então a mesma pergunta sempre encontra a mesma prova.">The embeddings are generated offline, always the same way, so the same question always finds the same evidence.</p>
+
+      <h2 data-pt="E a IA?">And the AI?</h2>
+      <p data-pt="Se você configurar uma &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt;, os suspeitos respondem com o Claude, pelo SDK oficial de C# ligado como &lt;code&gt;IChatClient&lt;/code&gt;. Sem chave, eles respondem com a fala do roteiro mais parecida com a sua pergunta. Trocar entre os dois é só configuração.">If you set an <code>ANTHROPIC_API_KEY</code>, the suspects answer with Claude, through the official C# SDK plugged in as an <code>IChatClient</code>. Without a key, they answer with the scripted line closest to your question. Switching between the two is just configuration.</p>
+      <p data-pt="Uma decisão que tomei logo no começo: a IA nunca decide qual prova você ganha. Isso é sempre a busca vetorial nos dados do caso. O modelo dá voz ao suspeito, e o banco guarda os fatos. Assim todo caso continua justo, sempre tem solução e é fácil de testar.">One decision I made early on: the AI never decides which evidence you get. That is always the vector search over the case data. The model gives the suspect a voice, and the database keeps the facts. That way every case stays fair, can always be solved, and is easy to test.</p>
+
+      <blockquote data-pt="O que eu levo daqui: deixe o modelo de linguagem cuidar da linguagem e mantenha as regras em código que dá para testar.">What I am taking with me: let the language model handle language, and keep the rules in code you can test.</blockquote>
+
+      <h2 data-pt="O que vem agora">What is next</h2>
+      <p data-pt="Quero trocar para a busca vetorial aproximada assim que o SQL Server suportar, escrever mais alguns casos e, quem sabe, deixar os jogadores criarem os seus. O código está no &lt;a href=&quot;https://github.com/edermendes2016/API.NET-11&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;, e a wiki tem mais detalhes de como tudo se encaixa.">I want to switch to the approximate vector search as soon as SQL Server supports it, write a few more cases, and maybe let players create their own. The code is on <a href="https://github.com/edermendes2016/API.NET-11" target="_blank" rel="noopener">GitHub</a>, and the wiki has more details on how it all fits together.</p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="inner">
+      <ul class="footer-follow">
+        <li><strong data-pt="Siga:">Follow:</strong></li>
+        <li><a href="https://www.linkedin.com/in/eder-mendes-amaral/" target="_blank" rel="noopener"><svg class="ico-linkedin" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/edermendes2016" target="_blank" rel="noopener"><svg class="ico-github" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>GitHub</a></li>
+        <li><a href="../../blog/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Blog</a></li>
+      </ul>
+      <p class="footer-copy">© <span id="year">2026</span> Eder Mendes Amaral</p>
+    </div>
+  </footer>
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/effects.js"></script>
+</body>
+</html>
