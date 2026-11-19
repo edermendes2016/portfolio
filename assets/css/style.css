@@ -84,6 +84,10 @@ pre code { background: none; padding: 0; color: inherit; }
 :root[data-theme="dark"] .theme-toggle .sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .moon { display: block; }
 .menu-toggle { display: none; }
+.music-toggle .pause { display: none; }
+.music-toggle[aria-pressed="true"] .play { display: none; }
+.music-toggle[aria-pressed="true"] .pause { display: block; }
+.music-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
 
 /* ===== Banner (hero) =====
    A light home-office illustration. Its left side is an empty wall, so the
@@ -226,7 +230,9 @@ main { min-width: 0; animation: intro .3s both .35s; }
 }
 @media (max-width: 640px) {
   .menu-toggle { display: inline-grid; }
-  .nav { position: relative; }
+  .nav { position: relative; gap: .45rem; }
+  .brand { white-space: nowrap; font-size: .95rem; }
+  .icon-btn { width: 34px; height: 34px; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: .5rem 1rem; box-shadow: 0 2px 4px rgba(0,0,0,.08); }
   .nav-links.open { display: flex; }
   .nav-links a { padding: .6rem 0; }
@@ -284,7 +290,6 @@ main { min-width: 0; animation: intro .3s both .35s; }
 .ask-option { padding: .4rem .6rem; border-radius: 6px; font-size: .92rem; cursor: pointer; }
 .ask-option:hover, .ask-option[aria-selected="true"] { background: var(--accent-soft); }
 .ask-send { font: inherit; font-size: .9rem; cursor: pointer; padding: .45rem .9rem; }
-.ask-note { color: var(--muted); font-size: .8rem; margin: .6rem 0 0; }
 .agent-links { margin: .2rem 0 .4rem; padding-left: 1.1rem; }
 .agent-links li { margin: .15rem 0; }
 .agent-meta { color: var(--muted); font-size: .85em; }
