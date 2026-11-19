@@ -74,7 +74,7 @@ Save the photo as `assets/img/profile.jpg` (square, at least 400x400) and update
 
 ## Change the banner
 
-The image at the top of the home page and the blog is `assets/img/banner.jpg` (2400x800), with a smaller `assets/img/banner-1200.jpg` for phones. It is a light, original illustration of a cozy home office (a developer at the desk with code and an AI chat bubble on the screen). Its source is `assets/img/banner-source.svg`: edit it, export it as JPG at 2400x800 and 1200x400, and keep the left side empty, because the text sits there. On phones the scene shows below the text.
+The image at the top of the home page and the blog is `assets/img/banner.jpg` (2400x800), with a smaller `assets/img/banner-1200.jpg` for phones. It is a light, original illustration of a cozy home office (a developer at the desk with code and an AI chat bubble on the screen, and a daruma doll for perseverance). The dark theme shows the same room at night, with rain clouds outside (`banner-night*.jpg`, `banner-night*-pixel.png`). The sources are `assets/img/banner-source.svg` and `assets/img/banner-night-source.svg`: edit it, export it as JPG at 2400x800 and 1200x400, and keep the left side empty, because the text sits there. On phones the scene shows below the text.
 
 ## Background music
 
@@ -82,7 +82,7 @@ The note button in the top bar plays an original loop: `assets/audio/samurai-the
 
 ## Effects
 
-`assets/js/effects.js` draws ambient effects on a low-resolution canvas with hard pixels and faint scanlines, a light 16-bit look: cherry blossom petals in the light theme (now and then a gust of petals or a paper crane), and rain with drops sliding on the "glass" in the dark theme (now and then a shooting star or a paper lantern). The banner also gets a pixelated version (`assets/img/banner-pixel.png`). Effects never catch clicks, pause in background tabs, are off by default for visitors who prefer reduced motion, and the sparkle button in the top bar turns them on or off.
+`assets/js/effects.js` draws ambient effects on a low-resolution canvas with hard pixels and faint scanlines, a light 16-bit look: cherry blossom petals in the light theme (now and then a gust of petals or a paper crane), and rain clouds drifting across the top, rain and drops sliding on the "glass" in the dark theme (now and then a shooting star or a paper lantern). The banner also gets a pixelated version (`assets/img/banner-pixel.png`). Effects never catch clicks, pause in background tabs, are off by default for visitors who prefer reduced motion, and the sparkle button in the top bar turns them on or off.
 
 ## Layout
 

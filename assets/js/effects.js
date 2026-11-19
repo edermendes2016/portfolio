@@ -46,7 +46,7 @@
   new MutationObserver(label).observe(root, { attributes: true, attributeFilter: ["lang"] });
 
   // ---- scene ----
-  var W = 0, H = 0, petals = [], rain = [], drops = [], extras = [];
+  var W = 0, H = 0, petals = [], rain = [], drops = [], extras = [], clouds = [];
   var nextEvent = 0, nextDrop = 0, last = 0, raf = 0, t = 0;
   function dark() { return root.dataset.theme === "dark"; }
   function rnd(a, b) { return a + Math.random() * (b - a); }
@@ -63,12 +63,29 @@
     return { x: rnd(0, W), y: y === undefined ? rnd(-H, 0) : y, vy: rnd(4, 9), vx: rnd(-1, 2), sway: rnd(4, 10),
       ph: rnd(0, 6.3), rot: rnd(0, 6.3), vr: rnd(-1.5, 1.5), s: rnd(1.4, 2.4), c: pick(PETAL), a: rnd(.55, .85) };
   }
+  // a rain cloud: a few overlapping puffs drifting slowly near the top
+  function cloud(x) {
+    var n = Math.round(rnd(4, 7)), w = rnd(40, 80), puffs = [];
+    for (var i = 0; i < n; i++) puffs.push({ dx: (i / (n - 1) - .5) * w, dy: rnd(-5, 3), r: rnd(8, 15) });
+    var hd = document.querySelector(".site-header"), top = hd ? hd.offsetHeight / PX + 12 : 12; // below the top bar
+    return { x: x, y: rnd(top, top + Math.max(8, H * .1)), v: rnd(2, 5), w: w, puffs: puffs, shade: pick(["#2f3849", "#353f52", "#3b4559"]) };
+  }
+  function drawCloud(c) {
+    ctx.globalAlpha = .15; // faint, so text under a passing cloud stays readable
+    ctx.fillStyle = c.shade;
+    for (var i = 0; i < c.puffs.length; i++) { var p = c.puffs[i]; ctx.beginPath(); ctx.arc(Math.round(c.x + p.dx), Math.round(c.y + p.dy), p.r, 0, 6.283); ctx.fill(); }
+    ctx.fillStyle = "#4a556b"; ctx.globalAlpha = .1;
+    var top = c.puffs[Math.floor(c.puffs.length / 2)];
+    ctx.beginPath(); ctx.arc(Math.round(c.x + top.dx - 3), Math.round(c.y + top.dy - 4), top.r * .6, 0, 6.283); ctx.fill();
+  }
   function streak() { return { x: rnd(-20, W + 20), y: rnd(-H, H), v: rnd(150, 230), l: rnd(4, 8) }; }
   function populate() {
     var n = Math.max(8, Math.min(24, Math.round(window.innerWidth / 70)));
     petals = []; for (var i = 0; i < n; i++) petals.push(petal(rnd(0, H)));
     var r = Math.max(30, Math.min(110, Math.round(window.innerWidth / 14)));
     rain = []; for (var j = 0; j < r; j++) rain.push(streak());
+    clouds = []; var c = Math.max(2, Math.min(5, Math.round(W / 100)));
+    for (var k = 0; k < c; k++) clouds.push(cloud(rnd(-60, W)));
   }
 
   // occasional events
@@ -153,6 +170,11 @@
     ctx.clearRect(0, 0, W, H);
     var night = dark();
     if (night) {
+      for (var ci = 0; ci < clouds.length; ci++) {
+        var cl = clouds[ci]; cl.x += cl.v * dt;
+        if (cl.x - cl.w > W + 20) { clouds[ci] = cloud(-cl.w - 20); continue; }
+        drawCloud(cl);
+      }
       ctx.globalAlpha = .28; ctx.strokeStyle = "#b9cdf2"; ctx.lineWidth = 1;
       ctx.beginPath();
       for (var i = 0; i < rain.length; i++) {

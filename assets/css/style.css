@@ -101,9 +101,10 @@ pre code { background: none; padding: 0; color: inherit; }
               radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.18) 100%); }
 /* 16-bit banner: the same scene, fewer colours and hard pixels */
 :root.fx-on .hero { background-image: var(--hero-fade), url("../img/banner-pixel.png"); image-rendering: pixelated; }
+:root.fx-on[data-theme="dark"] .hero { background-image: var(--hero-fade), url("../img/banner-night-pixel.png"); }
 @media (max-width: 900px) {
   :root.fx-on .hero { background-image: url("../img/banner-pixel.png"); }
-  :root.fx-on[data-theme="dark"] .hero { background-image: linear-gradient(rgba(22,26,34,.92), rgba(22,26,34,.92)), url("../img/banner-pixel.png"); }
+  :root.fx-on[data-theme="dark"] .hero { background-image: url("../img/banner-night-pixel.png"); }
 }
 
 /* ===== Banner (hero) =====
@@ -115,12 +116,12 @@ pre code { background: none; padding: 0; color: inherit; }
 }
 :root[data-theme="dark"] {
   --hero-text: #ffffff; --hero-sub: #eef0f2;
-  --hero-fade: linear-gradient(90deg, rgba(22,26,34,.85) 0%, rgba(22,26,34,.65) 45%, rgba(22,26,34,.45) 100%);
+  --hero-fade: linear-gradient(90deg, rgba(22,27,38,.8) 0%, rgba(22,27,38,.45) 40%, rgba(22,27,38,0) 62%);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --hero-text: #ffffff; --hero-sub: #eef0f2;
-    --hero-fade: linear-gradient(90deg, rgba(22,26,34,.85) 0%, rgba(22,26,34,.65) 45%, rgba(22,26,34,.45) 100%);
+    --hero-fade: linear-gradient(90deg, rgba(22,27,38,.8) 0%, rgba(22,27,38,.45) 40%, rgba(22,27,38,0) 62%);
     }
 }
 .hero {
@@ -131,10 +132,12 @@ pre code { background: none; padding: 0; color: inherit; }
   border-bottom: 1px solid var(--rule);
   animation: intro .3s both .25s;
 }
+/* Dark theme: the same room at night, with rain clouds outside */
+:root[data-theme="dark"] .hero { background-color: #1e2533; background-image: var(--hero-fade), url("../img/banner-night.jpg"); }
 @media (max-width: 900px) {
   /* Narrow screens: text on the plain wall colour, the scene shown below it. */
   .hero { padding-bottom: 250px; background-image: url("../img/banner-1200.jpg"); background-size: auto 240px; background-position: right -40px bottom; }
-  :root[data-theme="dark"] .hero { background-image: linear-gradient(rgba(22,26,34,.92), rgba(22,26,34,.92)), url("../img/banner-1200.jpg"); background-size: 100% calc(100% - 240px), auto 240px; background-position: top, right -40px bottom; }
+  :root[data-theme="dark"] .hero { background-image: url("../img/banner-night-1200.jpg"); }
 }
 .hero-inner { max-width: var(--wrap); margin: 0 auto; padding: 0 1rem; }
 .hero-title { color: var(--hero-text); font-size: 2.441rem; line-height: 1.1; margin: 0 0 .75rem; }
